@@ -1,0 +1,5 @@
+storybook-static/
+
+*.yml
+package.json
+package.lock.json

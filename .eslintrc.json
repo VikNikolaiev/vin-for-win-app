@@ -7,14 +7,7 @@
         "es2021": true,
         "node": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "airbnb",
-        "airbnb-typescript",
-        "prettier"
-    ],
+    "extends": ["airbnb", "airbnb-typescript", "prettier"],
     "overrides": [],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -22,7 +15,7 @@
         "sourceType": "module",
         "project": ["./tsconfig.json"]
     },
-    "plugins": ["react", "@typescript-eslint", "prettier"],
+    "plugins": ["prettier"],
     "rules": {
         "quotes": [1, "single"],
         "useTabs": 0,

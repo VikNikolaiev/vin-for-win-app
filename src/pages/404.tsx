@@ -1,7 +1,6 @@
-import { NextPage } from "next";
+import React from 'react';
+import { NextPage } from 'next';
 
-const NotFound: NextPage = () => {
-    return <div>404</div>;
-};
+const NotFound: NextPage = () => <div>404</div>;
 
 export default NotFound;
