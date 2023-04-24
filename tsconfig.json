@@ -26,5 +26,15 @@
         "incremental": true
     },
     "exclude": ["dist", ".next", "out"],
-    "include": ["next-env.d.ts", "next.config.js", "**/*.ts", "**/*.tsx"]
+    "include": ["next-env.d.ts", "next.config.js", "**/*.ts", "**/*.tsx"],
+    "rules": {
+        "import/extensions": ["error", "ignorePackages", {
+          "ts": "never",
+          "tsx": "never",
+          "js": "never",
+          "jsx": "never",
+          "mjs": "never"
+        }]
+      }
 }
+

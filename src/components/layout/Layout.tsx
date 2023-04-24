@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, FC } from 'react';
 import { Roboto } from 'next/font/google';
-import Header from './header/Header';
+import Header from '../header/Header';
 // import Footer from './footer/Footer';
 
 const roboto = Roboto({

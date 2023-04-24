@@ -1,24 +1,42 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
-import Layout from 'src/components/layout/Layout';
+import axios from 'axios';
+import { observer } from 'mobx-react-lite';
 import Button from '@avtopro/button';
 import TextInput from '@avtopro/text-input';
 import FileInput, { FileDropZone } from '@avtopro/files-uploader';
-// import RobotPreloader from '@avtopro/preloader';
-import axios from 'axios';
+import RobotPreloader from '@avtopro/preloader';
+import Modal from '@avtopro/modal';
+import Layout from '@/components/layout/Layout';
+import PhotoModal from '@/components/photo-modal/PhotoModal';
+import { useStore } from '../context/mainContext';
 
 const Home = () => {
+    const { vinSearch } = useStore();
     const [vin, setVin] = useState('');
-    // const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [openCamera, setOpenCamera] = useState<boolean>(false);
 
     type CustomFiles = {
         name: string;
         blob: Blob;
     };
 
+    // useEffect(() => {
+    //     if (
+    //         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    //             navigator.userAgent
+    //         )
+    //     ) {
+    //         console.log('Mobile');
+    //     } else {
+    //         console.log('PC');
+    //     }
+    // }, []);
+
     const performOcr = async (_: string, files: CustomFiles[]) => {
         if (files.length != 0) {
-            // setLoading(true);
+            setLoading(true);
             const imageFile = files[0].blob;
             const formData = new FormData();
             formData.append('file', imageFile);
@@ -31,7 +49,7 @@ const Home = () => {
                 .then((resp) => {
                     const { data } = resp;
                     setVin(data);
-                    // setLoading(false);
+                    setLoading(false);
                 })
                 .catch((error) => {
                     throw new Error(
@@ -64,15 +82,20 @@ const Home = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Layout>
-                <h1 style={{ textAlign: 'center' }} className="g-col-12">
-                    Поиск автомобиля по VIN коду
-                </h1>
+                <h1 className="g-col-12">Поиск автомобиля по VIN коду</h1>
                 <div
                     style={{ textAlign: 'center' }}
                     className="g-col-6 g-start-4"
                 >
-                    <span>Сфотографируйте VIN код.</span>
+                    <span>Укажите VIN код автомобиля.</span>
                 </div>
+                <div
+                    className="camera__button g-col-12"
+                    onClick={() => setOpenCamera((prev) => !prev)}
+                >
+                    <p>Сфотографируйте VIN код.</p>
+                </div>
+                {openCamera ? <PhotoModal /> : <p>cmkcm</p>}
                 <div className="g-col-6 g-start-4">
                     <FileInput
                         onChange={performOcr}
@@ -103,23 +126,23 @@ const Home = () => {
                     className="g-col-4 g-start-5"
                     style={{ textAlign: 'center' }}
                 >
-                    {vin.length >= 17
+                    {vinSearch.vin.length >= 17
                         ? 'Проверьте корректность VIN кода:'
                         : 'или'}
                 </span>
                 <TextInput
-                    value={vin}
+                    defaultValue={vinSearch.vin}
                     className="g-col-6 g-start-4"
-                    onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                        setVin(e.currentTarget.value)
-                    }
+                    onChange={(e: React.FormEvent<HTMLInputElement>) => {
+                        vinSearch.vin = e.currentTarget.value;
+                    }}
                     placeholder="Введите VIN код"
                 />
                 <div
                     className="g-col-4 g-start-5"
                     style={{ minHeight: '20px', textAlign: 'center' }}
                 >
-                    {vin.length > 17 && (
+                    {vinSearch.vin.length > 17 && (
                         <span
                             style={{
                                 color: 'red'
@@ -135,7 +158,20 @@ const Home = () => {
                         theme="prime"
                         uppercase
                     >
-                        Найти автомобиль
+                        {loading ? (
+                            <div
+                                style={{
+                                    background: '#0000005e',
+                                    width: '100%',
+                                    height: '600px',
+                                    position: 'relative'
+                                }}
+                            >
+                                <RobotPreloader fixed />
+                            </div>
+                        ) : (
+                            'Найти автомобиль'
+                        )}
                     </Button>
                 ) : (
                     <Button
@@ -144,7 +180,7 @@ const Home = () => {
                         theme="prime"
                         uppercase
                     >
-                        Найти автомобиль
+                        {loading ? 'Загрузка' : 'Найти автомобиль'}
                     </Button>
                 )}
             </Layout>
@@ -152,4 +188,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default observer(Home);
