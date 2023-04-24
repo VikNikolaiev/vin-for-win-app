@@ -1,7 +1,7 @@
-declare module "*.less" {
+declare module '*.less' {
     const resource: { [key: string]: string };
 
     export = resource;
 }
 
-declare module "@avtopro*";
+declare module '@avtopro*';

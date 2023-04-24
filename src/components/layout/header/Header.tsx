@@ -5,7 +5,7 @@ import logo from '@/assets/logo.svg';
 import styles from './Header.module.css';
 
 const Header: FC = () => (
-    <header className={styles.header}>
+    <header className={`${styles.header} g-col-12`}>
         <Link href="/">
             <Image src={logo} alt="logo" priority />
         </Link>

@@ -1,5 +1,19 @@
-@import "@avtopro/button/dist/style.css";
+@import '@avtopro/button/dist/style.css';
+@import '@avtopro/text-input/dist/style.css';
+@import '@avtopro/files-uploader/dist/style.css';
+@import '@avtopro/preloader/dist/style.css';
+@import '@avtopro/css-grid/dist/index.css';
 
 body {
     margin: 0;
+}
+
+h1 {
+    line-height: 40px;
+    margin: 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
 }

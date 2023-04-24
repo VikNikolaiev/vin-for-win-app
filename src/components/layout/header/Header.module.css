@@ -1,4 +1,10 @@
 .header {
     text-align: center;
     padding-top: 40px;
+    margin-bottom: 60px;
+    background: linear-gradient(
+        180deg,
+        #d8e3e9 0%,
+        rgba(233, 238, 241, 0) 100%
+    );
 }
