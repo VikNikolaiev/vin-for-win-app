@@ -95,7 +95,7 @@ const Home = () => {
                 >
                     <p>Сфотографируйте VIN код.</p>
                 </div>
-                {openCamera ? <PhotoModal /> : <p>cmkcm</p>}
+                {openCamera && <PhotoModal />}
                 <div className="g-col-6 g-start-4">
                     <FileInput
                         onChange={performOcr}

@@ -15,6 +15,7 @@ const avtoproPackages = Object.keys(packageJSON.dependencies).filter((name) =>
 const plugins = [
     [
         withLess,
+
         {
             lessLoaderOptions: {
                 lessOptions: {
