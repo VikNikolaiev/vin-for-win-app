@@ -43,7 +43,6 @@ const SearchVin = () => {
                 .catch((err: AxiosError) => {
                     setErrorPesponce(true);
                     setErrorMessage(`Response status: ${err.response?.data}`);
-                    console.log(err);
                 });
         } else {
             vinSearch.vin = '';
