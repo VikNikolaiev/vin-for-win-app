@@ -27,7 +27,7 @@ const plugins = [
 ];
 
 module.exports = withPlugins(plugins, {
-    reactStrictMode: true,
+    reactStrictMode: false,
 
     transpilePackages: [
         '@avtopro/files-uploader',
@@ -46,7 +46,11 @@ module.exports = withPlugins(plugins, {
 
         '@avtopro/placeholder',
 
-        '@avtopro/placeholder-robot'
+        '@avtopro/placeholder-robot',
+
+        '@avtopro/modal',
+
+        '@avtopro/panel'
     ],
 
     swcMinify: true,
