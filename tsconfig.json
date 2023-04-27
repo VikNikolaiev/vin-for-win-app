@@ -3,7 +3,7 @@
         "target": "esnext",
         "module": "esnext",
         "jsx": "preserve",
-        "lib": ["dom", "es2017", "dom.iterable"],
+        "lib": ["dom", "es2017"],
         "baseUrl": ".",
         "paths": {
             "@/*": ["src/*"]
