@@ -33,7 +33,6 @@ class Car {
             this.id,
             this.engines[0].id.toString()
         );
-        console.log(carParts);
         if (carParts) {
             this.parts = [...carParts];
         }
