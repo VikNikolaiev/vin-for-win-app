@@ -3,7 +3,7 @@
         "target": "esnext",
         "module": "esnext",
         "jsx": "preserve",
-        "lib": ["dom", "es2017"],
+        "lib": ["dom", "es2017", "dom.iterable"],
         "baseUrl": ".",
         "paths": {
             "@/*": ["src/*"]
@@ -28,13 +28,17 @@
     "exclude": ["dist", ".next", "out"],
     "include": ["next-env.d.ts", "next.config.js", "**/*.ts", "**/*.tsx"],
     "rules": {
-        "import/extensions": ["error", "ignorePackages", {
-          "ts": "never",
-          "tsx": "never",
-          "js": "never",
-          "jsx": "never",
-          "mjs": "never"
-        }]
-      }
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "ts": "never",
+                "tsx": "never",
+                "js": "never",
+                "jsx": "never",
+                "mjs": "never"
+            }
+        ]
+    }
 }
 

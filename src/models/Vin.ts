@@ -2,6 +2,10 @@ import { makeAutoObservable } from 'mobx';
 // import VinService from '../services/vin.service';
 
 class Vin {
+    pending: boolean = false;
+
+    step: string = 'search';
+
     vin: string;
 
     constructor(vin: string) {

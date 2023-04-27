@@ -14,6 +14,7 @@
         "@avtopro/files-uploader": "^0.10.14-68cce67.0",
         "@avtopro/icons": "^0.25.0",
         "@avtopro/modal": "^0.8.7-68cce67.0",
+        "@avtopro/overlay": "^0.6.0-68cce67.0",
         "@avtopro/panel": "^0.1.0-d12f0b5.0",
         "@avtopro/preloader": "^0.4.7-68cce67.0",
         "@avtopro/style": "^0.22.7-68cce67.0",

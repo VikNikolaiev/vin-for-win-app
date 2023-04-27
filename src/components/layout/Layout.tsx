@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, FC } from 'react';
 import { Roboto } from 'next/font/google';
-import Header from '../header/Header';
-// import Footer from './footer/Footer';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const roboto = Roboto({
     subsets: ['latin'],
@@ -12,7 +12,7 @@ const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => (
     <div className={`${roboto.className}`}>
         <Header />
         <div className="container grid-landing">{children}</div>
-        {/* <Footer /> */}
+        <Footer />
     </div>
 );
 

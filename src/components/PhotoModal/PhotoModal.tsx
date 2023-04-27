@@ -60,27 +60,9 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
         }
 
         setPhoto(req);
-        // axios
-        //     .post(
-        //         'https://service-vin-search-api.azurewebsites.net/api/vin/ocr',
-        //         req
-        //     )
-        //     .then((resp) => {
-        //         const { data } = resp;
-        //         vinSearch.vin = data;
-        //         setOpenCamera(false);
-        //     });
     };
 
     const sendCapture = async () => {
-        // const imgBlob = await captureImage();
-        // const test = new File([imgBlob], 'file.jpg');
-        // const req = new FormData();
-        // req.append('file', test);
-        // const dataURL = await getDataURL(imgBlob).catch((e) => {
-        //     console.error(e);
-        // });
-        // imgRef.current.src = dataURL;
         axios
             .post(
                 'https://service-vin-search-api.azurewebsites.net/api/vin/ocr',
@@ -137,14 +119,9 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                     {error && <p>{error.message}</p>}
                     <div className={styles.modal__controls}>
                         {!takePhoto ? (
-                            <>
-                                <Button theme="prime" onClick={stopCamera}>
-                                    stop camera
-                                </Button>
-                                <Button theme="prime" onClick={handleCapture}>
-                                    Сделать фото
-                                </Button>
-                            </>
+                            <Button theme="prime" onClick={handleCapture}>
+                                Сделать фото
+                            </Button>
                         ) : (
                             <>
                                 <Button
