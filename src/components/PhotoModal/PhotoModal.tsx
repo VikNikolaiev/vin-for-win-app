@@ -2,6 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import Modal from '@avtopro/modal';
 import Button from '@avtopro/button';
 import axios, { AxiosError } from 'axios';
+import { observer } from 'mobx-react-lite';
 import { useStore } from '../../context/mainContext';
 
 import styles from './PhotoModal.module.less';
@@ -22,7 +23,7 @@ type Props = {
 };
 
 const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
-    const { vinSearch } = useStore();
+    const { vinSearch, setPending } = useStore();
     const [photo, setPhoto] = useState<FormData>();
     const [errorResponce, setErrorPesponce] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -63,6 +64,7 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
     };
 
     const sendCapture = async () => {
+        setPending(true);
         axios
             .post(
                 'https://service-vin-search-api.azurewebsites.net/api/vin/ocr',
@@ -72,17 +74,25 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                 const { data } = resp;
                 vinSearch.vin = data;
                 setOpenCamera(false);
+                setPending(false);
             })
             .catch((err: AxiosError) => {
                 setErrorPesponce(true);
-                setErrorMessage(`Response status: ${err.response?.data}`);
+                setErrorMessage(`${err.response?.data}`);
+                setPending(false);
             });
     };
 
     return (
         <div>
             {errorResponce ? (
-                <Modal>
+                <Modal
+                    onClose={() => {
+                        setErrorPesponce((prev: boolean) => !prev);
+                        setOpenCamera((prev: boolean) => !prev);
+                    }}
+                    closeOnClick="true"
+                >
                     <p>{errorMessage}</p>
                 </Modal>
             ) : (
@@ -145,4 +155,4 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
     );
 };
 
-export default PhotoModal;
+export default observer(PhotoModal);

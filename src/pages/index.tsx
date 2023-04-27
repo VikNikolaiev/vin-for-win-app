@@ -43,7 +43,7 @@ const Home = () => {
                 {pending && (
                     <Overlay>
                         <div style={{ color: 'white', fontSize: '24px' }}>
-                            <Preloader title="Подождите, идёт поиск запчастей..." />
+                            <Preloader title="Пожалуйста, подождите..." />
                         </div>
                     </Overlay>
                 )}

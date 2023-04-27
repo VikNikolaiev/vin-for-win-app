@@ -12,7 +12,6 @@ import PhotoModal from '../PhotoModal/PhotoModal';
 
 const SearchVin = () => {
     const { vinSearch, car, setStep, setPending } = useStore();
-    const [loading, setLoading] = useState(false);
     const [openCamera, setOpenCamera] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [errorResponce, setErrorPesponce] = useState(false);
@@ -25,7 +24,7 @@ const SearchVin = () => {
 
     const performOcr = async (_: string, files: CustomFiles[]) => {
         if (files.length != 0) {
-            setLoading(true);
+            setPending(true);
             const imageFile = files[0].blob;
             const formData = new FormData();
             formData.append('file', imageFile);
@@ -37,12 +36,13 @@ const SearchVin = () => {
                 )
                 .then((resp: AxiosResponse) => {
                     const { data } = resp;
-                    vinSearch.vin = data;
-                    setLoading(false);
+                    vinSearch.vin = data.replaceAll('O', '0');
+                    setPending(false);
                 })
                 .catch((err: AxiosError) => {
                     setErrorPesponce(true);
                     setErrorMessage(`Response status: ${err.response?.data}`);
+                    setPending(false);
                 });
         } else {
             vinSearch.vin = '';
@@ -95,7 +95,6 @@ const SearchVin = () => {
                                     .then((resp: AxiosResponse) => {
                                         const { data } = resp;
                                         vinSearch.vin = data;
-                                        setLoading(false);
                                     })
                                     .catch((err: AxiosError) => {
                                         setErrorPesponce(true);
@@ -175,7 +174,7 @@ const SearchVin = () => {
                             await setPending(false);
                         }}
                     >
-                        {loading ? 'Загрузка' : 'Найти автомобиль'}
+                        Найти автомобиль
                     </Button>
                 ) : (
                     <Button
@@ -184,7 +183,7 @@ const SearchVin = () => {
                         theme="prime"
                         uppercase
                     >
-                        {loading ? 'Загрузка' : 'Найти автомобиль'}
+                        Найти автомобиль
                     </Button>
                 )}
             </>

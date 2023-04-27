@@ -10,9 +10,15 @@ class Car {
 
     vinCode: string = '';
 
+    price: string = '';
+
+    imgUrl: string = '';
+
     engines: Engine[] = [];
 
     parts: Part[] = [];
+
+    catalogueUrl: string = '';
 
     constructor() {
         makeAutoObservable(this);
@@ -25,6 +31,9 @@ class Car {
             this.name = car.name;
             this.vinCode = car.vinCode;
             this.engines = car.engines;
+            this.price = car.price;
+            this.imgUrl = car.imgUrl;
+            this.catalogueUrl = car.catalogueUrl;
         }
     }
 
