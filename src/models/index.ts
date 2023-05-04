@@ -49,4 +49,4 @@ class Model {
     };
 }
 
-export default new Model();
+export default Model;
