@@ -1,12 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
-import Modal from '@avtopro/modal';
-import Button from '@avtopro/button';
-import axios, { AxiosError } from 'axios';
-import { useTranslation } from 'next-i18next';
-import { observer } from 'mobx-react-lite';
-import { useRouter } from 'next/router';
 import { useStore } from '@/context/mainContext';
+import Button from '@avtopro/button';
+import Modal from '@avtopro/modal';
+import { observer } from 'mobx-react-lite';
+import { useStore } from '@/context/mainContext';
+import { useTranslation } from 'next-i18next';
+import React, { FC, useEffect, useState } from 'react';
 
+import { SearchMode } from '@/types/SearchMode';
 import styles from './PhotoModal.module.less';
 
 const { useCaptureImage } = require('use-capture-image');
@@ -22,16 +22,12 @@ function getDataURL(file: File | Blob): Promise<string | undefined> {
 
 type Props = {
     setOpenCamera: React.Dispatch<React.SetStateAction<boolean>>;
-    mode: number;
 };
 
-const PhotoModal: FC<Props> = ({ setOpenCamera, mode }) => {
+const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
     const { t } = useTranslation();
-    const router = useRouter();
-    const { vinSearch, setPending } = useStore();
-    const [photo, setPhoto] = useState<FormData>();
-    const [errorResponce, setErrorPesponce] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    const { searchMode, vinSearch, regnumSearch, setPending } = useStore();
+    const [photo, setPhoto] = useState<Blob>();
     const [takePhoto, setTakePhoto] = useState(false);
     const imgRef = React.useRef<HTMLImageElement>(null);
 
@@ -56,47 +52,53 @@ const PhotoModal: FC<Props> = ({ setOpenCamera, mode }) => {
     }, []);
 
     const handleCapture = async () => {
-        setTakePhoto(true);
-        const imgBlob = await captureImage();
-        const test = new File([imgBlob], 'file.jpg');
-        const req = new FormData();
-        req.append('file', test);
-        const dataURL = await getDataURL(imgBlob);
-        if (imgRef.current) {
-            imgRef.current.src = dataURL || '';
-        }
+        setPending(true);
 
-        setPhoto(req);
+        try {
+            const imgBlob = await captureImage();
+            setPhoto(imgBlob);
+            setTakePhoto(true);
+            stopCamera();
+
+            const dataURL = await getDataURL(imgBlob);
+            if (imgRef.current) {
+                imgRef.current.src = dataURL || '';
+            }
+        } catch (err) {
+            console.log(err);
+        } finally {
+            setPending(false);
+        }
     };
 
     const sendCapture = async () => {
-        setPending(true);
-        axios
-            .post(
-                'https://service-vin-search-api.azurewebsites.net/api/ocr/vin',
-                photo,
-                {
-                    headers: {
-                        AppLanguage: router.locale
-                    }
+        if (photo) {
+            setPending(true);
+
+            try {
+                if (searchMode === SearchMode.VIN) {
+                    await vinSearch.getVinFromImage(
+                        new File([photo], 'file.jpg')
+                    );
                 }
-            )
-            .then((resp) => {
-                const { data } = resp;
-                vinSearch.setVin(data);
+
+                if (searchMode === SearchMode.REGNUM) {
+                    await regnumSearch.getRegnumFromImage(
+                        new File([photo], 'file.jpg')
+                    );
+                }
+            } catch (err) {
+                console.log(err);
+            } finally {
                 setOpenCamera(false);
                 setPending(false);
-            })
-            .catch((err: AxiosError) => {
-                setErrorPesponce(true);
-                setErrorMessage(`${err.response?.data}`);
-                setPending(false);
-            });
+            }
+        }
     };
 
     return (
         <div>
-            {errorResponce ? (
+            {/* {errorResponce ? (
                 <Modal
                     onClose={() => {
                         setErrorPesponce((prev: boolean) => !prev);
@@ -106,58 +108,59 @@ const PhotoModal: FC<Props> = ({ setOpenCamera, mode }) => {
                 >
                     <p>{errorMessage}</p>
                 </Modal>
-            ) : (
-                <Modal
-                    onClose={() => {
-                        stopCamera();
-                        setOpenCamera((prev: boolean) => !prev);
-                    }}
-                    closeOnClick="true"
-                >
-                    <p>{t('photo__desc')}</p>
-                    {!takePhoto ? (
-                        <div style={{ backgroundColor: '#ccc', width: '100%' }}>
-                            <video
-                                className="video"
-                                width="100%"
-                                autoPlay
-                                ref={videoRef}
-                            >
-                                <track kind="captions" />
-                            </video>
-                        </div>
-                    ) : (
-                        <div>
-                            <img ref={imgRef} alt="" />
-                        </div>
-                    )}
-                    {error && <p>{error.message}</p>}
-                    <div className={styles.modal__controls}>
-                        {!takePhoto ? (
-                            <Button theme="prime" onClick={handleCapture}>
-                                {t('takePhoto__button')}
-                            </Button>
-                        ) : (
-                            <>
-                                <Button
-                                    theme="prime"
-                                    onClick={() => {
-                                        setTakePhoto((prev) => !prev);
-                                        startCamera();
-                                    }}
-                                >
-                                    {t('retakePhoto__button')}
-                                </Button>
-                                <Button theme="prime" onClick={sendCapture}>
-                                    {mode === 1
-                                        ? t('recognizeVin__button')
-                                        : t('recognizeNumber__button')}
-                                </Button>
-                            </>
-                        )}
+            ) : ( */}
+            <Modal
+                onClose={() => {
+                    stopCamera();
+                    setOpenCamera((prev: boolean) => !prev);
+                }}
+                closeOnClick="true"
+            >
+                <p>{t('photo__desc')}</p>
+                {!takePhoto ? (
+                    <div style={{ backgroundColor: '#ccc', width: '100%' }}>
+                        <video
+                            className="video"
+                            width="100%"
+                            autoPlay
+                            ref={videoRef}
+                        >
+                            <track kind="captions" />
+                        </video>
                     </div>
-                </Modal>
-            )}
+                ) : (
+                    <div>
+                        <img ref={imgRef} alt="" />
+                    </div>
+                )}
+                {error && <p>{error.message}</p>}
+                <div className={styles.modal__controls}>
+                    {!takePhoto ? (
+                        <Button theme="prime" onClick={handleCapture}>
+                            {t('takePhoto__button')}
+                        </Button>
+                    ) : (
+                        <>
+                            <Button
+                                theme="prime"
+                                onClick={() => {
+                                    setTakePhoto((prev) => !prev);
+                                    startCamera();
+                                }}
+                                tabIndex={0}
+                            >
+                                {t('retakePhoto__button')}
+                            </Button>
+                            <Button theme="prime" onClick={sendCapture}>
+                                {searchMode === SearchMode.VIN
+                                    ? t('recognizeVin__button')
+                                    : t('recognizeNumber__button')}
+                            </Button>
+                        </>
+                    )}
+                </div>
+            </Modal>
+            {/* )} */}
         </div>
     );
 };
