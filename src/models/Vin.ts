@@ -1,28 +1,18 @@
-import { makeAutoObservable } from 'mobx';
-// import VinService from '../services/vin.service';
+import { action, makeAutoObservable, observable } from 'mobx';
 
 class Vin {
-    pending: boolean = false;
-
-    step: string = 'search';
-
     vin: string;
 
     constructor(vin: string) {
         this.vin = vin || '';
-        makeAutoObservable(this);
+        makeAutoObservable(this, {
+            vin: observable,
+            setVin: action
+        });
     }
 
-    // async getModels() {
-    //     try {
-    //         const { data } = await this.lang.getModelName();
-    //         runInAction(() => {
-    //             this.lang = data;
-    //             this.state = 'done';
-    //         });
-    //     } catch (error) {
-    //         this.state = 'error';
-    //     }
-    // }
+    setVin(vin: string) {
+        this.vin = vin;
+    }
 }
 export default Vin;

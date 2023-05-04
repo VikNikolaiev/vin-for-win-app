@@ -2,6 +2,9 @@ import React from 'react';
 import Head from 'next/head';
 import { observer } from 'mobx-react-lite';
 import Overlay from '@avtopro/overlay';
+import type { GetStaticProps } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Preloader from '@avtopro/preloader';
 import Layout from '../components/Layout/Layout';
 import SearchVin from '../components/SearchVin/SearchVin';
@@ -10,6 +13,7 @@ import { useStore } from '../context/mainContext';
 
 const Home = () => {
     const { step, pending } = useStore();
+    const { t } = useTranslation();
 
     return (
         <>
@@ -26,20 +30,8 @@ const Home = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Layout>
-                <h1 className="g-col-12">Поиск автомобиля по VIN коду</h1>
-                {step == 'search' ? (
-                    <>
-                        <div
-                            style={{ textAlign: 'center' }}
-                            className="g-col-6 g-start-4"
-                        >
-                            <span>Укажите VIN код автомобиля.</span>
-                        </div>
-                        <SearchVin />
-                    </>
-                ) : (
-                    <Parts />
-                )}
+                <h1 className="g-col-12">{t('title')}</h1>
+                {step == 'search' ? <SearchVin /> : <Parts />}
                 {pending && (
                     <Overlay>
                         <div style={{ color: 'white', fontSize: '24px' }}>
@@ -51,5 +43,11 @@ const Home = () => {
         </>
     );
 };
+
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
+    props: {
+        ...(await serverSideTranslations(locale ?? 'ru', ['common']))
+    }
+});
 
 export default observer(Home);

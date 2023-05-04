@@ -1,7 +1,6 @@
-/* eslint-disable consistent-return */
-import axios from 'axios';
-import { Part } from '../types/Part';
-import Car from '../models/Car';
+import axios, { AxiosError } from 'axios';
+import { Parts } from '@/types/Parts';
+import Car from '@/models/Car';
 
 class CarService {
     static async getCar(vin: string) {
@@ -11,21 +10,27 @@ class CarService {
             );
 
             return response.data;
-        } catch {
-            //
+        } catch (error: unknown) {
+            if (error instanceof AxiosError) {
+                throw error;
+            }
         }
+        return null;
     }
 
     static async getParts(modelId: string, engineId: string) {
         try {
-            const response = await axios.get<Part[]>(
+            const response = await axios.get<Parts>(
                 `https://service-vin-search-api.azurewebsites.net/api/cars/car/parts?ModelId=${modelId}&EnginelId=${engineId}`
             );
 
             return response.data;
-        } catch {
-            //
+        } catch (error: unknown) {
+            if (error instanceof AxiosError) {
+                throw error;
+            }
         }
+        return null;
     }
 }
 

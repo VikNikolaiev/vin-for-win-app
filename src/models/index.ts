@@ -1,14 +1,13 @@
 import { makeAutoObservable } from 'mobx';
-import Car from './Car';
-import Vin from './Vin';
-// import CarService from '@/services/car.service';
-// import Car from './Car';s
-// import { Engine } from '@/types/Engine';
+import Car from '@/models/Car';
+import Vin from '@/models/Vin';
 
 class Model {
     partPage: boolean = false;
 
     pending: boolean = false;
+
+    moreEngines: boolean = false;
 
     step: string = 'search';
 
@@ -28,6 +27,10 @@ class Model {
 
     setPending = (pending: boolean) => {
         this.pending = pending;
+    };
+
+    setMoreEngine = (moreEngines: boolean) => {
+        this.moreEngines = moreEngines;
     };
 }
 

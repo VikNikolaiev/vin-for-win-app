@@ -1,5 +1,6 @@
+@import '@avtopro/style/themes/default.less';
+
 .car__card {
-    padding: 10px;
     background: #ffffff;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     border-radius: 3px;
@@ -10,17 +11,10 @@
 }
 
 .card__wrapper {
+    box-sizing: border-box;
     display: flex;
-}
-
-.car__photo {
-    width: 108px;
     height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #c4c4c4;
-    margin-right: 20px;
+    margin-left: 10px;
 }
 
 .car__name {
@@ -38,16 +32,45 @@
     color: #7b7b7b;
 }
 
+.parts {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
 .part__wrapper {
     padding: 10px;
     background: #ffffff;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 
     &:not(:last-child) {
         border-bottom: 1px solid #ededed;
+        box-shadow: none;
     }
 }
 
 .part__title {
     display: flex;
+}
+
+.overallPrice__wrapper {
+    width: 143px;
+    height: 72px;
+    background: @whiteDarkestColor;
+    padding: 10px 0px 10px 15px;
+}
+
+.overallPrice__title {
+    margin-bottom: 8px !important;
+    font-size: 13px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    color: #3b3b3b;
+}
+
+.overallPrice {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    color: #3b3b3b;
 }

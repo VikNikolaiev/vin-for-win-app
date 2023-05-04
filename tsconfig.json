@@ -26,7 +26,13 @@
         "incremental": true
     },
     "exclude": ["dist", ".next", "out"],
-    "include": ["next-env.d.ts", "next.config.js", "**/*.ts", "**/*.tsx"],
+    "include": [
+        "next-env.d.ts",
+        "next.config.js",
+        "**/*.ts",
+        "**/*.tsx",
+        "next-i18next.config.js"
+    ],
     "rules": {
         "import/extensions": [
             "error",

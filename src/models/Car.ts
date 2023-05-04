@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
-import CarService from '@/services/car.service';
-import { Engine } from '../types/Engine';
-import { Part } from '../types/Part';
+import { Engine } from '@/types/Engine';
+import { Part } from '@/types/Part';
+import CarService from '@/services/CarService';
 
 class Car {
     id: string = '';
@@ -12,6 +12,8 @@ class Car {
 
     price: string = '';
 
+    overallPrice: string = '';
+
     imgUrl: string = '';
 
     engines: Engine[] = [];
@@ -20,31 +22,57 @@ class Car {
 
     catalogueUrl: string = '';
 
+    notFound: boolean = false;
+
     constructor() {
         makeAutoObservable(this);
     }
 
     async getCar(vin: string) {
-        const car = await CarService.getCar(vin);
-        if (car) {
-            this.id = car.id;
-            this.name = car.name;
-            this.vinCode = car.vinCode;
-            this.engines = car.engines;
-            this.price = car.price;
-            this.imgUrl = car.imgUrl;
-            this.catalogueUrl = car.catalogueUrl;
+        try {
+            const car = await CarService.getCar(vin);
+
+            if (car) {
+                this.id = car.id;
+                this.name = car.name;
+                this.vinCode = car.vinCode;
+                this.engines = car.engines;
+                this.price = car.price;
+                this.imgUrl = car.imgUrl;
+                this.catalogueUrl = car.catalogueUrl;
+            }
+        } catch (error: any) {
+            console.log(error);
         }
     }
 
-    async getParts() {
-        const carParts = await CarService.getParts(
+    async getParts(engine: string) {
+        const data = await CarService.getParts(
             this.id,
-            this.engines[0].id.toString()
+            engine
         );
-        if (carParts) {
-            this.parts = [...carParts];
+        if (data) {
+            this.parts = [...data.parts];
+            this.overallPrice = data.overallPrice.toString();
         }
+    }
+
+    resetCar() {
+        this.id = '';
+        this.name = '';
+        this.vinCode = '';
+        this.engines = [];
+        this.price = '';
+        this.imgUrl = '';
+        this.catalogueUrl = '';
+    }
+
+    resetParts() {
+        this.parts = [];
+    }
+
+    setNotFound(notFound: boolean) {
+        this.notFound = notFound;
     }
 }
 

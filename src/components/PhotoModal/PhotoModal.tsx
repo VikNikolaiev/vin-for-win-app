@@ -2,8 +2,9 @@ import React, { FC, useEffect, useState } from 'react';
 import Modal from '@avtopro/modal';
 import Button from '@avtopro/button';
 import axios, { AxiosError } from 'axios';
+import { useTranslation } from 'next-i18next';
 import { observer } from 'mobx-react-lite';
-import { useStore } from '../../context/mainContext';
+import { useStore } from '@/context/mainContext';
 
 import styles from './PhotoModal.module.less';
 
@@ -20,9 +21,11 @@ function getDataURL(file: File | Blob): Promise<string | undefined> {
 
 type Props = {
     setOpenCamera: React.Dispatch<React.SetStateAction<boolean>>;
+    mode: number,
 };
 
-const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
+const PhotoModal: FC<Props> = ({ setOpenCamera, mode }) => {
+    const { t } = useTranslation();
     const { vinSearch, setPending } = useStore();
     const [photo, setPhoto] = useState<FormData>();
     const [errorResponce, setErrorPesponce] = useState(false);
@@ -72,7 +75,7 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
             )
             .then((resp) => {
                 const { data } = resp;
-                vinSearch.vin = data;
+                vinSearch.setVin(data);
                 setOpenCamera(false);
                 setPending(false);
             })
@@ -103,18 +106,15 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                     }}
                     closeOnClick="true"
                 >
-                    <p>
-                        Дайте разрешение на доступ к камере и сфотографируйте
-                        VIN код.
-                    </p>
+                    <p>{t('photo__desc')}</p>
                     {!takePhoto ? (
                         <div
-                            style={{ backgroundColor: '#ccc', width: '400px' }}
+                            style={{ backgroundColor: '#ccc', width: '100%' }}
                         >
                             <video
                                 className="video"
-                                width="400px"
-                                height="400px"
+                                width="100%"
+                                // height="auto"
                                 autoPlay
                                 ref={videoRef}
                             >
@@ -130,7 +130,7 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                     <div className={styles.modal__controls}>
                         {!takePhoto ? (
                             <Button theme="prime" onClick={handleCapture}>
-                                Сделать фото
+                                {t('takePhoto__button')}
                             </Button>
                         ) : (
                             <>
@@ -141,10 +141,10 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                                         startCamera();
                                     }}
                                 >
-                                    Сделать новое фото
+                                    {t('retakePhoto__button')}
                                 </Button>
                                 <Button theme="prime" onClick={sendCapture}>
-                                    Распознать VIN код
+                                    {mode === 1 ? t('recognizeVin__button') : t('recognizeNumber__button')}
                                 </Button>
                             </>
                         )}

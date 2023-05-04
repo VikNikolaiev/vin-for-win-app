@@ -1,11 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 const withPlugins = require('next-compose-plugins');
-
 const withLess = require('next-with-less');
-
 const path = require('path');
-
+const { i18n } = require('./next-i18next.config');
 const packageJSON = require('./package.json');
 
 const avtoproPackages = Object.keys(packageJSON.dependencies).filter((name) =>
@@ -28,6 +26,8 @@ const plugins = [
 
 module.exports = withPlugins(plugins, {
     reactStrictMode: false,
+
+    i18n,
 
     transpilePackages: [
         '@avtopro/files-uploader',

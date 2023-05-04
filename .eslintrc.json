@@ -50,6 +50,15 @@
                 "props": false
             }
         ],
+        "import/extensions": [
+            2,
+            {
+                "less": "always",
+                "png": "always",
+                "json": "always",
+                "svg": "always"
+            }
+        ],
         // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-named-as-default.md
         // Doesn't work properly for re-exporting default modules
         "import/no-named-as-default": "off",
@@ -106,6 +115,7 @@
                 ]
             }
         ],
+        "global-require": 0,
         // Разрешить статические свойства в React class components
         "react/static-property-placement": ["warn", "static public field"],
         // Разрешить "пробрасывание" свойств в компонентах, т. к. это во многих случаях
@@ -135,12 +145,12 @@
                 }
             }
         ],
-        "no-underscore-dangle": [
-            "error",
-            {
-                "allowAfterThis": true
-            }
-        ]
+        "no-underscore-dangle": ["error", "off"]
+        // "no-underscore-dangle": [
+        //     "error",
+        //     {
+        //         "allowAfterThis": true
+        //     }
+        // ]
     }
 }
-

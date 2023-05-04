@@ -1,0 +1,27 @@
+@import '@avtopro/style';
+
+.switcher {
+    display: flex;
+
+    color: @blueLighterColor;
+
+    &__select {
+        color: inherit;
+
+        background-color: transparent;
+
+        & > div {
+            flex-direction: row-reverse;
+
+            cursor: pointer;
+        }
+    }
+
+    &__option {
+        color: @blueLighterColor;
+
+        text-transform: uppercase;
+
+        cursor: pointer;
+    }
+}

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import gear from '@/assets/gear.svg';
 import gearSm from '@/assets/gear_sm.svg';
-import styles from './Footer.module.less';
+import styles from '@/components/Footer/Footer.module.less';
 
 const Footer: FC = () => (
     <footer className="g-col-12">

@@ -1,14 +1,9 @@
 import React, { useMemo } from 'react';
 import type { AppProps } from 'next/app';
-import { mainContext } from '../context/mainContext';
-import Model from '../models/index';
-import '../styles/globals.less';
-
-// const App = ({ Component, pageProps }: AppProps) => (
-//     <mainContext.Provider value={new Model()}>
-//         <Component {...pageProps} />
-//     </mainContext.Provider>
-// );
+import { appWithTranslation } from 'next-i18next';
+import { mainContext } from '@/context/mainContext';
+import Model from '@/models/index';
+import '@/styles/globals.less';
 
 const App = ({ Component, pageProps }: AppProps) => {
     const MemoValue = useMemo(() => new Model(), [new Model()]);
@@ -19,4 +14,4 @@ const App = ({ Component, pageProps }: AppProps) => {
     );
 };
 
-export default App;
+export default appWithTranslation(App);

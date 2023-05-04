@@ -3,19 +3,24 @@ import Button from '@avtopro/button';
 import TextInput from '@avtopro/text-input';
 import Panel from '@avtopro/panel';
 import FileInput, { FileDropZone } from '@avtopro/files-uploader';
+import Modal from '@avtopro/modal';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import PhotoModal from '@/components/PhotoModal/PhotoModal';
 import PhotoIcon from '@avtopro/icons/dist/jsx/PhotoIcon';
+import { useTranslation } from 'next-i18next';
 import { isMobile } from 'react-device-detect';
 import { observer } from 'mobx-react-lite';
-import { useStore } from '../../context/mainContext';
-import PhotoModal from '../PhotoModal/PhotoModal';
+import { useStore } from '@/context/mainContext';
+import styles from './SearchVin.module.less';
 
 const SearchVin = () => {
-    const { vinSearch, car, setStep, setPending } = useStore();
-    const [openCamera, setOpenCamera] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [errorResponce, setErrorPesponce] = useState(false);
-    const inputElement = useRef<HTMLInputElement | null>(null);
+    const { t } = useTranslation();
+    const { vinSearch, car, setStep, setPending, setMoreEngine } = useStore();
+    const [openCamera, setOpenCamera] = useState<boolean>(false);
+    const [mode, setMode] = useState<number>(1);
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const [errorResponce, setErrorPesponce] = useState<boolean>(false);
+    const inputElement = useRef<HTMLInputElement>(null);
 
     type CustomFiles = {
         name: string;
@@ -31,28 +36,35 @@ const SearchVin = () => {
 
             axios
                 .post(
-                    'https://service-vin-search-api.azurewebsites.net/api/vin/ocr',
+                    mode === 1
+                        ? 'https://service-vin-search-api.azurewebsites.net/api/ocr/vin'
+                        : 'https://service-vin-search-api.azurewebsites.net/api/ocr/number',
                     formData
                 )
                 .then((resp: AxiosResponse) => {
                     const { data } = resp;
-                    vinSearch.vin = data.replaceAll('O', '0');
+                    vinSearch.setVin(data);
                     setPending(false);
                 })
                 .catch((err: AxiosError) => {
                     setErrorPesponce(true);
-                    setErrorMessage(`Response status: ${err.response?.data}`);
+                    setErrorMessage(`${err.response?.data}`);
                     setPending(false);
                 });
         } else {
-            vinSearch.vin = '';
+            vinSearch.setVin('');
         }
     };
 
     const visibleButton = () => {
-        const regexp =
-            /^[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{2}\d{6}$/;
-        return regexp.test(vinSearch.vin);
+        if (mode === 1) {
+            const regexp =
+                /^[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{2}\d{6}$/;
+            return regexp.test(vinSearch.vin);
+        } else {
+            const regexp = /^[ABCEHIKMOPTX]{2}\d{4}(?<!0{4})[ABCEHIKMOPTX]{2}$/;
+            return regexp.test(vinSearch.vin);
+        }
     };
 
     const handleClick = () => {
@@ -60,13 +72,51 @@ const SearchVin = () => {
     };
 
     if (errorResponce) {
-        return <div>{errorMessage}</div>;
+        return (
+            <Modal
+                onClose={() => {
+                    setErrorPesponce((prev: boolean) => !prev);
+                    setOpenCamera((prev: boolean) => !prev);
+                }}
+                closeOnClick="true"
+            >
+                <p>{errorMessage}</p>
+            </Modal>
+        );
     } else {
         return (
             <>
+                <div
+                    style={{ textAlign: 'center' }}
+                    className="g-col-6 g-start-4 g-col-xs-8 g-start-xs-2"
+                >
+                    <nav className="pro-btn-group">
+                        <Button
+                            className={`${styles.tab} ${
+                                mode === 1 ? styles.active : ''
+                            }`}
+                            onClick={() => setMode(1)}
+                        >
+                            {t('vinTab')}
+                        </Button>
+                        <Button
+                            className={`${styles.tab} ${
+                                mode === 2 ? styles.active : ''
+                            }`}
+                            onClick={() => setMode(2)}
+                        >
+                            {t('numberTab')}
+                        </Button>
+                    </nav>
+                    <p style={{ marginTop: '20px' }}>
+                        {mode === 1
+                            ? t('title__desc_vin')
+                            : t('title__desc_number')}
+                    </p>
+                </div>
                 <Panel
                     type="button"
-                    className="camera__button g-col-6 g-start-4"
+                    className="g-col-6 g-start-4 g-col-xs-8 g-start-xs-2 camera__button"
                     onClick={() =>
                         isMobile
                             ? handleClick()
@@ -76,31 +126,40 @@ const SearchVin = () => {
                     <i className="pro-icon-inline mr-x3">
                         <PhotoIcon />
                     </i>
-                    Сфотографируйте VIN код
+                    {mode === 1
+                        ? t('photo__panel_vin')
+                        : t('photo__panel_number')}
                 </Panel>
-                {openCamera && <PhotoModal setOpenCamera={setOpenCamera} />}
-                <div className="g-col-6 g-start-4">
+                {openCamera && (
+                    <PhotoModal mode={mode} setOpenCamera={setOpenCamera} />
+                )}
+                <div className="g-col-6 g-start-4 g-col-xs-8 g-start-xs-2">
                     <input
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                             const formData = new FormData();
 
                             if (e.target.files !== null) {
+                                setPending(true);
                                 formData.append('file', e.target?.files[0]);
 
                                 axios
                                     .post(
-                                        'https://service-vin-search-api.azurewebsites.net/api/vin/ocr',
+                                        mode === 1
+                                            ? 'https://service-vin-search-api.azurewebsites.net/api/ocr/vin'
+                                            : 'https://service-vin-search-api.azurewebsites.net/api/ocr/number',
                                         formData
                                     )
                                     .then((resp: AxiosResponse) => {
                                         const { data } = resp;
-                                        vinSearch.vin = data;
+                                        vinSearch.setVin(data);
+                                        setPending(false);
                                     })
                                     .catch((err: AxiosError) => {
                                         setErrorPesponce(true);
                                         setErrorMessage(
-                                            `Response status: ${err.response?.data}`
+                                            `${err.response?.data}`
                                         );
+                                        setPending(false);
                                     });
                             }
                         }}
@@ -112,7 +171,7 @@ const SearchVin = () => {
                     <FileInput
                         onChange={performOcr}
                         {...{
-                            name: 'logo',
+                            name: 'vin',
                             accept: {
                                 jpg: ['image/jpeg'],
                                 png: ['image/png'],
@@ -125,65 +184,77 @@ const SearchVin = () => {
                     >
                         {(inputProps: object) => (
                             <FileDropZone
-                                title="Загрузите фото VIN кода"
+                                title={
+                                    mode === 1
+                                        ? t('fileInput__desc_vin')
+                                        : t('fileInput__desc_number')
+                                }
                                 {...inputProps}
                             />
                         )}
                     </FileInput>
                 </div>
                 <span
-                    className="g-col-4 g-start-5"
+                    className="g-col-4 g-start-5 g-col-xs-8 g-start-xs-2"
                     style={{ textAlign: 'center' }}
                 >
-                    {vinSearch.vin.length >= 17
-                        ? 'Проверьте корректность VIN кода:'
-                        : 'или'}
+                    {t('or')}
                 </span>
                 <TextInput
-                    defaultValue={vinSearch.vin}
-                    className="g-col-4 g-start-5"
+                    className="g-col-4 g-start-5 g-col-xs-4 g-start-xs-3"
                     onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                        vinSearch.vin = e.currentTarget.value;
+                        vinSearch.setVin(e.currentTarget.value);
                     }}
-                    placeholder="Введите VIN код"
+                    value={vinSearch.vin}
+                    placeholder={
+                        mode === 1
+                            ? t('inputVinPlaceholder')
+                            : t('inputNumberPlaceholder')
+                    }
                 />
                 <div
-                    className="g-col-4 g-start-5"
+                    className="g-col-4 g-start-5 g-col-xs-8 g-start-xs-2"
                     style={{ minHeight: '20px', textAlign: 'center' }}
                 >
-                    {vinSearch.vin.length > 17 && (
+                    {vinSearch.vin.length > (mode === 1 ? 17 : 8) && (
                         <span
                             style={{
                                 color: 'red'
                             }}
                         >
-                            Длина VIN кода не должна превышать 17 символов.
+                            {mode === 1 ? t('invalidVin') : t('invalidNumber')}
                         </span>
                     )}
                 </div>
                 {visibleButton() ? (
                     <Button
-                        className="g-col-2 g-start-6"
+                        className="g-col-2 g-start-6 g-col-xs-8 g-start-xs-2"
                         theme="prime"
                         uppercase
                         onClick={async () => {
                             setPending(true);
                             await car.getCar(vinSearch.vin);
-                            await car.getParts();
-                            setStep('parts');
+                            if (car.engines.length > 1) {
+                                setMoreEngine(true);
+                            } else {
+                                await car.getParts(
+                                    car.engines[0].id.toString()
+                                );
+                            }
+                            setStep('engines');
                             await setPending(false);
                         }}
                     >
-                        Найти автомобиль
+                        {t('carSearchButton')}
                     </Button>
                 ) : (
                     <Button
                         disabled
-                        className="g-col-2 g-start-6"
+                        className="g-col-2 g-start-6 g-col-md-4 g-start-md-5 g-col-sm-4 g-start-sm-5 g-col-xs-4 g-start-xs-3"
                         theme="prime"
                         uppercase
                     >
-                        Найти автомобиль
+                        {t('carSearchButton')}
                     </Button>
                 )}
             </>
