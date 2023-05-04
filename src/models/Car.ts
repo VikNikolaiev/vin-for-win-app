@@ -16,6 +16,8 @@ class Car {
 
     imgUrl: string = '';
 
+    engine: string = '';
+
     engines: Engine[] = [];
 
     parts: Part[] = [];
@@ -23,6 +25,8 @@ class Car {
     catalogueUrl: string = '';
 
     notFound: boolean = false;
+
+    pending: boolean = false;
 
     constructor() {
         makeAutoObservable(this);
@@ -42,19 +46,19 @@ class Car {
                 this.catalogueUrl = car.catalogueUrl;
             }
         } catch (error: any) {
-            console.log(error);
+            // console.log(error);
         }
     }
 
     async getParts(engine: string) {
-        const data = await CarService.getParts(
-            this.id,
-            engine
-        );
+        this.engine = engine;
+        this.pending = true;
+        const data = await CarService.getParts(this.id, engine);
         if (data) {
             this.parts = [...data.parts];
             this.overallPrice = data.overallPrice.toString();
         }
+        this.pending = false;
     }
 
     resetCar() {

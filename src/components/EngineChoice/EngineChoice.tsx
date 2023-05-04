@@ -1,25 +1,27 @@
 import React from 'react';
 import Button from '@avtopro/button';
 import { observer } from 'mobx-react-lite';
-import { useStore } from '@/context/mainContext';
 import { useTranslation } from 'next-i18next';
+import { useStore } from '@/context/mainContext';
+import { Engine } from '@/types/Engine';
+import styles from './EngineChoice.module.less';
 
 const EngineChoice = () => {
     const { t } = useTranslation();
     const { car, setMoreEngine, setPending } = useStore();
+
     return (
-        <div>
-            <p>{t('choiceEngine')}</p>
+        <div className={styles.choice}>
+            <p className={styles.desc}>{t('choiceEngine')}</p>
             <ul
                 style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    flexWrap: 'wrap',
-                    height: '133px'
+                    display: 'grid',
+                    gap: '5px',
+                    gridTemplateColumns: '1fr 1fr'
                 }}
             >
-                {car.engines.map((item) => (
-                    <li key={item.id} style={{ marginBottom: '5px' }}>
+                {car.engines.map((item: Engine) => (
+                    <li key={item.id} style={{ marginBottom: '0px' }}>
                         <Button
                             theme="link"
                             style={{ padding: '0' }}

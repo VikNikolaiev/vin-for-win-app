@@ -6,7 +6,12 @@ class CarService {
     static async getCar(vin: string) {
         try {
             const response = await axios.get<Car>(
-                `https://service-vin-search-api.azurewebsites.net/api/cars/car?VinCode=${vin}`
+                `https://service-vin-search-api.azurewebsites.net/api/cars/car?VinCode=${vin}`,
+                {
+                    headers: {
+                        AppLanguage: localStorage.getItem('lang')
+                    }
+                }
             );
 
             return response.data;
@@ -21,7 +26,12 @@ class CarService {
     static async getParts(modelId: string, engineId: string) {
         try {
             const response = await axios.get<Parts>(
-                `https://service-vin-search-api.azurewebsites.net/api/cars/car/parts?ModelId=${modelId}&EnginelId=${engineId}`
+                `https://service-vin-search-api.azurewebsites.net/api/cars/car/parts?ModelId=${modelId}&EnginelId=${engineId}`,
+                {
+                    headers: {
+                        AppLanguage: localStorage.getItem('lang')
+                    }
+                }
             );
 
             return response.data;

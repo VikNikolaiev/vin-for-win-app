@@ -1,5 +1,5 @@
 export class Part {
-    name: string;
+    translatedName: string;
 
     id: number;
 
@@ -14,7 +14,7 @@ export class Part {
     price: string;
 
     constructor(
-        name: string,
+        translatedName: string,
         id: number,
         brandName: string,
         code: number,
@@ -22,7 +22,7 @@ export class Part {
         url: string,
         price: string
     ) {
-        this.name = name;
+        this.translatedName = translatedName;
         this.id = id;
         this.code = code;
         this.url = url;

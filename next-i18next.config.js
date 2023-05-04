@@ -3,6 +3,7 @@
 * @type {import('next-i18next').UserConfig}
 
 */
+const path = require('path');
 
 module.exports = {
     // https://www.i18next.com/overview/configuration-options#logging
@@ -17,45 +18,45 @@ module.exports = {
 
             'ru',
 
-            // 'es',
+            'es',
 
-            // 'de',
+            'de',
 
-            // 'fr',
+            'fr',
 
-            // 'pt',
+            'pt',
 
-            // 'it',
+            'it',
 
-            // 'pl',
+            'pl',
 
-            // 'nl',
+            'nl',
 
-            // 'sk',
+            'sk',
 
-            // 'sl',
+            'sl',
 
-            // 'cs',
+            'cs',
 
-            // 'sv',
+            'sv',
 
-            // 'be',
+            'be',
 
-            // 'el',
+            'el',
 
-            // 'lv',
+            'lv',
 
-            // 'lt',
+            'lt',
 
-            // 'et',
+            'et',
 
-            // 'hr'
+            'hr'
         ]
     } /** To avoid issues when deploying to some paas (vercel...) */,
 
     localePath:
         typeof window === 'undefined'
-            ? require('path').resolve('./public/locales')
+            ? path.resolve('./public/locales')
             : '/locales',
 
     reloadOnPrerender: process.env.NODE_ENV === 'development' /**
