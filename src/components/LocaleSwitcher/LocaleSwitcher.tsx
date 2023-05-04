@@ -1,8 +1,8 @@
-import { useStore } from '@/context/mainContext';
+import { useRouter } from 'next/router';
 import GlobeIcon from '@avtopro/icons/dist/jsx/GlobeIcon';
 import { Option, SelectIcon } from '@avtopro/select';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
+import { useStore } from '@/context/mainContext';
 import styles from './LocaleSwitcher.module.less';
 
 const LocaleSwitcher = () => {
