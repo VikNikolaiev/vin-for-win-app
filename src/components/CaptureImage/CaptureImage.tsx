@@ -13,12 +13,7 @@ export const CaptureImage = () => {
     const { t } = useTranslation();
 
     const inputElement = useRef<HTMLInputElement>(null);
-    const {
-        searchMode,
-        vinSearch,
-        regnumSearch,
-        setPending,
-    } = useStore();
+    const { searchMode, vinSearch, regnumSearch, setPending } = useStore();
 
     type CustomFiles = {
         name: string;

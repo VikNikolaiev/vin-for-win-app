@@ -2,7 +2,6 @@ import { useStore } from '@/context/mainContext';
 import Button from '@avtopro/button';
 import Modal from '@avtopro/modal';
 import { observer } from 'mobx-react-lite';
-import { useStore } from '@/context/mainContext';
 import { useTranslation } from 'next-i18next';
 import React, { FC, useEffect, useState } from 'react';
 
