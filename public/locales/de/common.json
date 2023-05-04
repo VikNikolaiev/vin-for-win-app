@@ -1,4 +1,5 @@
 {
+    "preloader": "Bitte warten Sie...",
     "title": "Fahrzeugsuche nach VIN oder Nummernschild",
     "vinTab": "VIN-Code",
     "numberTab": "Nummernschild",

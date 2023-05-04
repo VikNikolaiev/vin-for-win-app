@@ -4,6 +4,7 @@ import Button from '@avtopro/button';
 import axios, { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next';
 import { observer } from 'mobx-react-lite';
+import { useRouter } from 'next/router';
 import { useStore } from '@/context/mainContext';
 
 import styles from './PhotoModal.module.less';
@@ -21,17 +22,19 @@ function getDataURL(file: File | Blob): Promise<string | undefined> {
 
 type Props = {
     setOpenCamera: React.Dispatch<React.SetStateAction<boolean>>;
-    mode: number,
+    mode: number;
 };
 
 const PhotoModal: FC<Props> = ({ setOpenCamera, mode }) => {
     const { t } = useTranslation();
+    const router = useRouter();
     const { vinSearch, setPending } = useStore();
     const [photo, setPhoto] = useState<FormData>();
     const [errorResponce, setErrorPesponce] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [takePhoto, setTakePhoto] = useState(false);
     const imgRef = React.useRef<HTMLImageElement>(null);
+
     const { error, startCamera, stopCamera, captureImage, videoRef } =
         useCaptureImage({
             constraints: {
@@ -70,8 +73,13 @@ const PhotoModal: FC<Props> = ({ setOpenCamera, mode }) => {
         setPending(true);
         axios
             .post(
-                'https://service-vin-search-api.azurewebsites.net/api/vin/ocr',
-                photo
+                'https://service-vin-search-api.azurewebsites.net/api/ocr/vin',
+                photo,
+                {
+                    headers: {
+                        AppLanguage: router.locale
+                    }
+                }
             )
             .then((resp) => {
                 const { data } = resp;
@@ -108,13 +116,10 @@ const PhotoModal: FC<Props> = ({ setOpenCamera, mode }) => {
                 >
                     <p>{t('photo__desc')}</p>
                     {!takePhoto ? (
-                        <div
-                            style={{ backgroundColor: '#ccc', width: '100%' }}
-                        >
+                        <div style={{ backgroundColor: '#ccc', width: '100%' }}>
                             <video
                                 className="video"
                                 width="100%"
-                                // height="auto"
                                 autoPlay
                                 ref={videoRef}
                             >
@@ -144,7 +149,9 @@ const PhotoModal: FC<Props> = ({ setOpenCamera, mode }) => {
                                     {t('retakePhoto__button')}
                                 </Button>
                                 <Button theme="prime" onClick={sendCapture}>
-                                    {mode === 1 ? t('recognizeVin__button') : t('recognizeNumber__button')}
+                                    {mode === 1
+                                        ? t('recognizeVin__button')
+                                        : t('recognizeNumber__button')}
                                 </Button>
                             </>
                         )}

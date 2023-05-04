@@ -1,10 +1,30 @@
+@import '@avtopro/style/themes/index.less';
+
 .header {
-    text-align: center;
-    padding-top: 40px;
-    margin-bottom: 60px;
+    align-items: center;
+
+    height: 80px;
+
+    padding-top: 20px;
+
     background: linear-gradient(
         180deg,
         #d8e3e9 0%,
-        rgba(233, 238, 241, 0) 100%
+
+        rgba(233, 238, 241, 0%) 100%
     );
+}
+
+.title {
+    font-size: 10px;
+
+    font-size: @baseFontSize;
+
+    border: 1px solid black;
+
+    border-radius: @borderRadius;
+}
+
+.image {
+    text-align: center;
 }

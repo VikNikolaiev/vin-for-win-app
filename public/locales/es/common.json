@@ -1,4 +1,5 @@
 {
+    "preloader": "Por favor, espera...",
     "title": "Buscar vehículo por VIN o matrícula",
     "vinTab": "Código VIN",
     "numberTab": "Matrícula",

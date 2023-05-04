@@ -1,13 +1,19 @@
-import React, { FC } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import logo from '@/assets/logo.svg';
-import styles from '@/components/Header/Header.module.less';
 import LocaleSwitcher from '@/components/LocaleSwitcher/LocaleSwitcher';
+import logo from '../../assets/logo.svg';
+import styles from './Header.module.less';
 
-const Header: FC = () => (
-    <header className={`${styles.header} g-col-12`}>
-        <Image src={logo} alt="logo" priority />
-        <LocaleSwitcher />
+const Header = () => (
+    <header className={`${styles.header}`}>
+        <section className="grid-landing">
+            <div className="g-start-4 g-start-xs-2">
+                <LocaleSwitcher />
+            </div>
+            <div className={`${styles.image} g-col-4 g-start-5 g-start-xs-3`}>
+                <Image width="200" height="45" src={logo} alt="logo" />
+            </div>
+        </section>
     </header>
 );
 

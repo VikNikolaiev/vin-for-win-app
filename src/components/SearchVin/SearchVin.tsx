@@ -5,11 +5,11 @@ import Panel from '@avtopro/panel';
 import FileInput, { FileDropZone } from '@avtopro/files-uploader';
 import Modal from '@avtopro/modal';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import PhotoModal from '@/components/PhotoModal/PhotoModal';
 import PhotoIcon from '@avtopro/icons/dist/jsx/PhotoIcon';
 import { useTranslation } from 'next-i18next';
 import { isMobile } from 'react-device-detect';
 import { observer } from 'mobx-react-lite';
+import PhotoModal from '@/components/PhotoModal/PhotoModal';
 import { useStore } from '@/context/mainContext';
 import styles from './SearchVin.module.less';
 
@@ -39,7 +39,12 @@ const SearchVin = () => {
                     mode === 1
                         ? 'https://service-vin-search-api.azurewebsites.net/api/ocr/vin'
                         : 'https://service-vin-search-api.azurewebsites.net/api/ocr/number',
-                    formData
+                    formData,
+                    {
+                        headers: {
+                            AppLanguage: localStorage.getItem('lang')
+                        }
+                    }
                 )
                 .then((resp: AxiosResponse) => {
                     const { data } = resp;
@@ -147,7 +152,13 @@ const SearchVin = () => {
                                         mode === 1
                                             ? 'https://service-vin-search-api.azurewebsites.net/api/ocr/vin'
                                             : 'https://service-vin-search-api.azurewebsites.net/api/ocr/number',
-                                        formData
+                                        formData,
+                                        {
+                                            headers: {
+                                                AppLanguage:
+                                                    localStorage.getItem('lang')
+                                            }
+                                        }
                                     )
                                     .then((resp: AxiosResponse) => {
                                         const { data } = resp;
