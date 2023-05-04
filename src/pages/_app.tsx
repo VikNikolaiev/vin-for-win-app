@@ -5,10 +5,10 @@ import { useRouter } from 'next/router';
 import { mainContext } from '@/context/mainContext';
 
 import '@/styles/globals.less';
-import models from '@/models';
+import Model from '@/models';
 
 const App = ({ Component, pageProps }: AppProps) => {
-    const MemoValue = useMemo(() => models, [models]);
+    const MemoValue = useMemo(() => new Model(), [new Model()]);
 
     const router = useRouter();
 
