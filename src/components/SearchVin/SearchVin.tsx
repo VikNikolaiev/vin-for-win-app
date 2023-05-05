@@ -61,7 +61,7 @@ const SearchVin = observer(() => {
         <>
             <div
                 style={{ textAlign: 'center' }}
-                className="g-col-6 g-start-4 g-col-xs-8 g-start-xs-2"
+                className="g-col-6 g-start-4  g-col-xs-8 g-start-xs-2"
             >
                 <nav className="pro-btn-group">
                     <Button

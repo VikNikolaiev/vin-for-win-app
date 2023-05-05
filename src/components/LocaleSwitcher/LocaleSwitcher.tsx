@@ -4,6 +4,7 @@ import SelectIcon, { Option } from '@avtopro/select';
 import { useTranslation } from 'next-i18next';
 import { useStore } from '@/context/mainContext';
 import styles from './LocaleSwitcher.module.less';
+import { Engine } from '@/types/Engine';
 
 const LocaleSwitcher = () => {
     const { i18n } = useTranslation();
@@ -15,7 +16,7 @@ const LocaleSwitcher = () => {
         localStorage.setItem('lang', value[0]);
         router.push(router.asPath, router.asPath, { locale: value[0] });
         if (car.parts.length) {
-            car.getParts(car.engine);
+            car.getParts(car.engine as Engine);
         }
     };
 
@@ -44,7 +45,6 @@ const LocaleSwitcher = () => {
                     </Option>
                 ))}
             </SelectIcon>
-            {/* <span>{i18n.language.toUpperCase()}</span> */}
         </div>
     );
 };

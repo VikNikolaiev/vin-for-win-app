@@ -12,7 +12,7 @@ export const VinInput = observer(() => {
     return (
         <>
             <TextInput
-                className="g-col-4 g-start-5 g-col-xs-4 g-start-xs-3"
+                className="g-col-4 g-start-5 g-col-lg-4 g-start-lg-5 g-col-md-6 g-start-md-4 g-col-sm-8 g-start-sm-3 g-col-xs-12 g-col-start-xs-1"
                 onChange={(e: React.FormEvent<HTMLInputElement>) => {
                     vinSearch.setVin(e.currentTarget.value.toUpperCase());
                 }}
@@ -32,15 +32,6 @@ export const VinInput = observer(() => {
                         {t('invalidVin')}
                     </span>
                 )}
-                {/* {vinSearch.vin.length > 17 && (
-                    <span
-                        style={{
-                          color: 'red'
-                        }}
-                    >
-                        {t('invalidVin')}
-                    </span>
-                )} */}
             </div>
         </>
     );

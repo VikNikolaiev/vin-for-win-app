@@ -26,7 +26,7 @@ class Regnum {
     validateRegnum(regnum: string) {
         // const pattern = /^[ABCEHIKMOPTX]{2}\d{4}(?<!0{4})[ABCEHIKMOPTX]{2}$/;
         const pattern =
-            /^[ABCEHIKMOPTXАВСЕНКМОРТХІ]{2}\d{4}(?<!0{4})[ABCEHIKMOPTXАВСЕНКМОРТХІ]{2}$/;
+            /^[ABCEHIKMOPTXАВСЕНКМОРТХІ]{2}\d{4}(?!0{4})[ABCEHIKMOPTXАВСЕНКМОРТХІ]{2}$/;
         return pattern.test(regnum);
     }
 

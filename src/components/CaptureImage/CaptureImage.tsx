@@ -38,31 +38,6 @@ export const CaptureImage = () => {
                 setPending(false);
             }
         }
-
-        // const imageFile = files[0].blob;
-        // const formData = new FormData();
-        // formData.append('file', imageFile);
-
-        // axios
-        //     .post(
-        //         searchMode == SearchMode.VIN
-        //             ? 'https://service-vin-search-api.azurewebsites.net/api/ocr/vin'
-        //             : 'https://service-vin-search-api.azurewebsites.net/api/ocr/number',
-        //         formData
-        //     )
-        //     .then((resp: AxiosResponse) => {
-        //         const { data } = resp;
-        //         vinSearch.setVin(data);
-        //         setPending(false);
-        //     })
-        //     .catch((err: AxiosError) => {
-        //         setErrorPesponce(true);
-        //         setErrorMessage(`${err.response?.data}`);
-        //         setPending(false);
-        //     });
-        // } else {
-        //     vinSearch.setVin('');
-        // }
     };
 
     const openMobileCamera = () => {
@@ -90,28 +65,6 @@ export const CaptureImage = () => {
             } finally {
                 setPending(false);
             }
-
-            // const formData = new FormData();
-            // formData.append('file', e.target?.files[0]);
-            // console.log(formData);
-
-            // axios
-            //     .post(
-            //         searchMode == SearchMode.VIN
-            //             ? 'https://service-vin-search-api.azurewebsites.net/api/ocr/vin'
-            //             : 'https://service-vin-search-api.azurewebsites.net/api/ocr/number',
-            //         formData
-            //     )
-            //     .then((resp: AxiosResponse) => {
-            //         const { data } = resp;
-            //         vinSearch.setVin(data);
-            //         setPending(false);
-            //     })
-            //     .catch((err: AxiosError) => {
-            //         setErrorPesponce(true);
-            //         setErrorMessage(`${err.response?.data}`);
-            //         setPending(false);
-            //     });
         }
     };
 
@@ -119,7 +72,7 @@ export const CaptureImage = () => {
         <>
             <Panel
                 type="button"
-                className="g-col-6 g-start-4 g-col-xs-8 g-start-xs-2 camera__button"
+                className="g-col-6 g-start-4 g-col-lg-8 g-start-lg-3 g-col-md-8 g-start-md-3 g-col-sm-10 g-start-sm-2 g-col-xs-12 g-col-xs-1 camera__button"
                 onClick={() =>
                     isMobile
                         ? openMobileCamera()
@@ -144,7 +97,7 @@ export const CaptureImage = () => {
                 onChange={handleMobileCamera}
             />
 
-            <div className="g-col-6 g-start-4 g-col-xs-8 g-start-xs-2">
+            <div className="g-col-6 g-start-4 g-col-lg-8 g-start-lg-3 g-col-md-8 g-start-md-3 g-col-sm-10 g-start-sm-2 g-col-xs-12 g-col-xs-1">
                 <FileInput
                     onChange={handleFileInput}
                     {...{
