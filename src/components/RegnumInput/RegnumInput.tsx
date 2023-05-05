@@ -14,7 +14,7 @@ export const RegnumInput = observer(() => {
             <TextInput
                 className="g-col-4 g-start-5 g-col-xs-4 g-start-xs-3"
                 onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                    regnumSearch.setRegnum(e.currentTarget.value);
+                    regnumSearch.setRegnum(e.currentTarget.value.toUpperCase());
                 }}
                 value={regnumSearch.regnum}
                 placeholder={t('inputNumberPlaceholder')}
@@ -32,15 +32,6 @@ export const RegnumInput = observer(() => {
                         {t('invalidNumber')}
                     </span>
                 )}
-                {/* {vinSearch.vin.length > 8 && (
-                    <span
-                        style={{
-                            color: 'red'
-                        }}
-                    >
-                        {t('invalidNumber')}
-                    </span>
-                )} */}
             </div>
         </>
     );

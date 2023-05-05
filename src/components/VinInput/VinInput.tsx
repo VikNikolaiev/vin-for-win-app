@@ -14,7 +14,7 @@ export const VinInput = observer(() => {
             <TextInput
                 className="g-col-4 g-start-5 g-col-xs-4 g-start-xs-3"
                 onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                    vinSearch.setVin(e.currentTarget.value);
+                    vinSearch.setVin(e.currentTarget.value.toUpperCase());
                 }}
                 value={vinSearch.vin}
                 placeholder={t('inputVinPlaceholder')}

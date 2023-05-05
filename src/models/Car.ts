@@ -11,6 +11,8 @@ class Car {
 
     vinCode: string = '';
 
+    carNumber: string = '';
+
     price: string = '';
 
     overallPrice: string = '';
@@ -50,7 +52,8 @@ class Car {
         if (car) {
             this.id = car.id;
             this.name = car.name;
-            this.vinCode = car.vinCode;
+            this.vinCode = car.vinCode || '';
+            this.carNumber = car.carNumber || '';
             this.engines = car.engines;
             this.price = car.price;
             this.imgUrl = car.imgUrl;
