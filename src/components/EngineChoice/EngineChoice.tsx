@@ -14,19 +14,19 @@ const EngineChoice = () => {
         <div className={styles.choice}>
             <p className={styles.desc}>{t('choiceEngine')}</p>
             <ul className={styles.engine__list}>
-                {car.engines.map((item: Engine) => (
-                    <li key={item.id} style={{ marginBottom: '0px' }}>
+                {car.engines.map((engine: Engine) => (
+                    <li key={engine.id} style={{ marginBottom: '0px' }}>
                         <Button
                             theme="link"
                             style={{ padding: '0' }}
                             onClick={async () => {
                                 setPending(true);
-                                await car.getParts(item.id.toString());
+                                await car.getParts(engine);
                                 await setMoreEngine(false);
                                 await setPending(false);
                             }}
                         >
-                            {item.name}
+                            {engine.name}
                         </Button>
                     </li>
                 ))}

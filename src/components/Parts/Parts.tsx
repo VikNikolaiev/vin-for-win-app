@@ -1,6 +1,7 @@
 import EngineChoice from '@/components/EngineChoice/EngineChoice';
 import styles from '@/components/Parts/Parts.module.less';
 import { useStore } from '@/context/mainContext';
+import { useRouter } from 'next/router';
 import Button from '@avtopro/button';
 import ArrowRightIcon from '@avtopro/icons/dist/jsx/ArrowRightIcon';
 import Preloader from '@avtopro/preloader';
@@ -11,6 +12,7 @@ import Link from 'next/link';
 
 const Parts = () => {
     const { t } = useTranslation();
+    const router = useRouter();
     const { car, moreEngines, setStep, setMoreEngine } = useStore();
     const partsList = car.parts;
 
@@ -31,7 +33,7 @@ const Parts = () => {
                         />
                         <div style={{ margin: 'auto 0' }}>
                             <span className={styles.car__name}>
-                                {car.name} {car.engine}
+                                {car.name} {car.engine?.name}
                             </span>
                             <span className={styles.car__vin}>
                                 {car.carNumber !== '' && `${car.carNumber}`}
@@ -47,7 +49,10 @@ const Parts = () => {
                                             padding: '0px',
                                             marginRight: '20px'
                                         }}
-                                        onClick={() => setMoreEngine(true)}
+                                        onClick={() => {
+                                            setMoreEngine(true);
+                                            car.resetEngine();
+                                        }}
                                     >
                                         {t('changeEngine')}
                                     </Button>
@@ -167,7 +172,7 @@ const Parts = () => {
                     >
                         <Link
                             target="_blank"
-                            href={`https://zealous-bay-07bf8c303.3.azurestaticapps.net?modelId=${car.id}`}
+                            href={`https://zealous-bay-07bf8c303.3.azurestaticapps.net/${router.locale}?modelId=${car.id}`}
                         >
                             <Button theme="light-blue">{t('findPart')}</Button>
                         </Link>

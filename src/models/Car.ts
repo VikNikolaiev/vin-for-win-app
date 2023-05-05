@@ -19,7 +19,7 @@ class Car {
 
     imgUrl: string = '';
 
-    engine: string = '';
+    engine: Engine | null = null;
 
     engines: Engine[] = [];
 
@@ -61,16 +61,16 @@ class Car {
         }
 
         if (this.engines.length === 1) {
-            await this.getParts(this.engines[0].id.toString());
+            await this.getParts(this.engines[0]);
         }
     }
 
-    async getParts(engine: string) {
+    async getParts(engine: Engine) {
         this.engine = engine;
         this.pending = true;
         const data = await CarService.getParts(
             this.id,
-            engine,
+            engine.id.toString(),
             (error: CustomError) => this.onError(error)
         );
         if (data) {
@@ -84,6 +84,7 @@ class Car {
         this.id = '';
         this.name = '';
         this.vinCode = '';
+        this.engine = null;
         this.engines = [];
         this.price = '';
         this.imgUrl = '';
@@ -92,6 +93,10 @@ class Car {
 
     resetParts() {
         this.parts = [];
+    }
+
+    resetEngine() {
+        this.engine = null;
     }
 
     setNotFound(notFound: boolean) {

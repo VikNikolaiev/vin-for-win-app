@@ -74,7 +74,6 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
         if (photo) {
             setPending(true);
 
-            // try {
             if (searchMode === SearchMode.VIN) {
                 await vinSearch.getVinFromImage(new File([photo], 'file.jpg'));
             }
@@ -84,28 +83,14 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                     new File([photo], 'file.jpg')
                 );
             }
-            // } catch (err) {
-            // console.log(err);
-            // } finally {
+            
             setOpenCamera(false);
             setPending(false);
-            // }
         }
     };
 
     return (
         <div>
-            {/* {errorResponce ? (
-                <Modal
-                    onClose={() => {
-                        setErrorPesponce((prev: boolean) => !prev);
-                        setOpenCamera((prev: boolean) => !prev);
-                    }}
-                    closeOnClick="true"
-                >
-                    <p>{errorMessage}</p>
-                </Modal>
-            ) : ( */}
             <Modal
                 onClose={() => {
                     stopCamera();
@@ -157,7 +142,6 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                     )}
                 </div>
             </Modal>
-            {/* )} */}
         </div>
     );
 };
