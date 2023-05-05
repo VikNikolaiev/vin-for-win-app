@@ -15,7 +15,7 @@ const Parts = () => {
     const partsList = car.parts;
 
     return (
-        <div className="g-col-6 g-start-4">
+        <div className="g-col-10 g-start-2 g-col-lg-8 g-start-lg-3 g-col-md-10 g-start-md-2 g-col-xs-12 g-start-xs-1">
             <div className={styles.car__card}>
                 <div className={styles.card__wrapper}>
                     <div className={styles.info__wrapper}>
@@ -27,6 +27,7 @@ const Parts = () => {
                             src={car.imgUrl}
                             unoptimized
                             style={{ marginRight: '20px' }}
+                            className={styles.car__photo}
                         />
                         <div style={{ margin: 'auto 0' }}>
                             <span className={styles.car__name}>
@@ -96,10 +97,16 @@ const Parts = () => {
                                     key={item.id}
                                 >
                                     <div
-                                        className="grid-modal"
-                                        style={{ alignItems: 'center' }}
+                                        className="grid-base"
+                                        style={{
+                                            alignItems: 'center',
+                                            width: '100%'
+                                        }}
                                     >
-                                        <div className="g-col-1">
+                                        <div
+                                            className="g-col-2 g-col-xs-1"
+                                            style={{ minWidth: '50px' }}
+                                        >
                                             <Link
                                                 href={item.url}
                                                 target="_blank"
@@ -109,8 +116,7 @@ const Parts = () => {
                                             <p>{item.brandName}</p>
                                         </div>
                                         <div
-                                            className={`${styles.part__title} g-col-2 g-start-2`}
-                                            style={{ marginLeft: '-30px' }}
+                                            className={`${styles.part__title} g-col-8 g-col-xs-3`}
                                         >
                                             <Image
                                                 alt=""
@@ -120,15 +126,15 @@ const Parts = () => {
                                                 src={item.imgUrl}
                                                 unoptimized
                                                 style={{ marginRight: '10px' }}
+                                                className={styles.part__photo}
                                             />
                                             <p>{item.translatedName}</p>
                                         </div>
                                         <div
                                             style={{
-                                                fontWeight: '700',
-                                                paddingLeft: '25px'
+                                                fontWeight: '700'
                                             }}
-                                            className="g-col-1 g-start-4"
+                                            className="g-col-2 g-col-xs-2"
                                         >
                                             <p>
                                                 {item.price
@@ -150,6 +156,7 @@ const Parts = () => {
                         )}
                     </div>
                     <div
+                        className={styles.parts__buttons}
                         style={{
                             display: 'flex',
                             justifyContent: 'space-between',

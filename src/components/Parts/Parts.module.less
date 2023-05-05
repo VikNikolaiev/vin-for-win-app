@@ -12,7 +12,7 @@
     justify-content: space-between;
     align-items: center;
 
-    @media screen and(max-width: 1250px) {
+    @media screen and(max-width: 1000px) {
         flex-direction: column;
         align-items: flex-start;
     }
@@ -23,6 +23,11 @@
     display: flex;
     height: 72px;
     margin-left: 10px;
+    padding: 5px 0;
+
+    @media screen and (max-width: 1000px) {
+        margin-bottom: 10px;
+    }
 }
 
 .car__name {
@@ -40,6 +45,12 @@
     color: #7b7b7b;
 }
 
+.car__photo {
+    @media screen and (max-width: 1250px) {
+        display: none;
+    }
+}
+
 .parts {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
@@ -47,6 +58,7 @@
 .part__wrapper {
     padding: 10px;
     background: #ffffff;
+    display: flex;
 
     &:not(:last-child) {
         border-bottom: 1px solid #ededed;
@@ -58,13 +70,20 @@
     display: flex;
 }
 
+.part__photo {
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+}
+
 .overallPrice__wrapper {
     width: 143px;
     height: 72px;
     background: @whiteDarkestColor;
     padding: 10px 0px 10px 15px;
+    color: #3b3b3b;
 
-    @media screen and(max-width: 1250px) {
+    @media screen and(max-width: 1000px) {
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -80,23 +99,30 @@
     line-height: 20px;
     display: flex;
     align-items: center;
-    color: #3b3b3b;
 
-    @media screen and(max-width: 1250px) {
+    @media screen and(max-width: 1000px) {
         margin-bottom: 0 !important;
         margin-right: 10px !important;
     }
 }
 
 .overallPrice {
+    display: flex;
+    align-items: center;
     font-weight: 700;
     font-size: 16px;
     line-height: 26px;
-    display: flex;
-    align-items: center;
-    color: #3b3b3b;
 
-    @media screen and(max-width: 1250px) {
+    @media screen and(max-width: 1000px) {
         padding-right: 20px;
+    }
+}
+
+.parts__buttons {
+    @media screen and(max-width: 1000px) {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 10px;
     }
 }

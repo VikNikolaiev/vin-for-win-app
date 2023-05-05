@@ -95,7 +95,7 @@ const SearchVin = observer(() => {
                 uppercase
                 onClick={async () => {
                     setPending(true);
-                    await car.getCar(vinSearch.vin);
+                    await car.getCar(searchMode === SearchMode.VIN ? vinSearch.vin : regnumSearch.regnum);
                     if (car.engines.length > 1) {
                         setMoreEngine(true);
                     } else {
