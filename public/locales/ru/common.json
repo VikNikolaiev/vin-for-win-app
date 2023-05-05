@@ -28,5 +28,9 @@
     "findPart": "Найти деталь по фото",
     "toCatalog": "Перейти в полный каталог автозапчастей",
     "footer": "Запчасти без посредников",
-    "errorMessage": "Извините, что-то пошло не так... Робот Иззи работает над этим!"
+    "errorMessage": "Извините, что-то пошло не так... Робот Иззи работает над этим!",
+    "connection": "connectionError",
+    "vinCodeNotFound": "vinCodeNotFound",
+    "regNumberNotFound": "regNumberNotFound",
+    "carNotFound": "carNotFound"
 }

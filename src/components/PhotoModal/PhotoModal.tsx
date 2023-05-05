@@ -118,7 +118,11 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                 {error && <p>{error.message}</p>}
                 <div className={styles.modal__controls}>
                     {!takePhoto ? (
-                        <Button theme="prime" onClick={handleCapture}>
+                        <Button
+                            theme="prime"
+                            onClick={handleCapture}
+                            disabled={error ? true : false}
+                        >
                             {t('takePhoto__button')}
                         </Button>
                     ) : (

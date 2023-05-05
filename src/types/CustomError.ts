@@ -1,3 +1,7 @@
 export enum CustomError {
-    default = 'errorMessage'
+    default = 'errorMessage',
+    connection = 'connectionError',
+    vinCodeNotFound = 'vinCodeNotFound',
+    regNumberNotFound = 'regNumberNotFound',
+    carNotFound = 'carNotFound'
 }
