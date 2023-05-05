@@ -28,5 +28,11 @@
     "findPart": "Find a part by photo",
     "toCatalog": "Go to the full catalog of auto parts",
     "footer": "Parts without intermediaries",
-    "errorMessage": "Sorry, something went wrong... Robot Izzy is working on it!"
+    "errorMessage": "Sorry, something went wrong... Robot Izzy is working on it!",
+    "connection": "No network connection. Please check your connection.",
+    "vinCodeNotFound": "Failed to recognize VIN code. Try uploading a different photo.",
+    "regNumberNotFound": "Failed to recognize car number. Try uploading a different photo.",
+    "carNotFound": "No car found with your data.",
+    "cameraAccess": "We don't have permission to use the camera. Please provide access.",
+    "changeRegnum": "Change number"
 }

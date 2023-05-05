@@ -28,5 +28,11 @@
     "findPart": "Ieškoti detalės pagal nuotrauką",
     "toCatalog": "Eiti į pilną automobilių dalys katalogą",
     "footer": "Dalys be tarpininkų",
-    "errorMessage": "Atsiprašome, kažkas nepavyko... Robotas Izzy daro viską, kad tai ištaisytų!"
+    "errorMessage": "Atsiprašome, kažkas nepavyko... Robotas Izzy daro viską, kad tai ištaisytų!",
+    "connection": "Nėra ryšio su tinklu. Patikrinkite prisijungimą.",
+    "vinCodeNotFound": "Nepavyko atpažinti VIN kodo. Bandykite įkelti kitą nuotrauką.",
+    "regNumberNotFound": "Nepavyko atpažinti automobilio numerio. Bandykite įkelti kitą nuotrauką.",
+    "carNotFound": "Pagal jūsų duomenis automobilis nerastas.",
+    "cameraAccess": "Neturime leidimo naudoti kamerą. Suteikite, prašome, prieigą.",
+    "changeRegnum": "Keisti numerį"
 }

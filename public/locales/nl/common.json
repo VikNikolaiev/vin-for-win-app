@@ -28,5 +28,11 @@
     "findPart": "Zoek onderdeel op foto",
     "toCatalog": "Ga naar de volledige catalogus van auto-onderdelen",
     "footer": "Onderdelen zonder tussenpersonen",
-    "errorMessage": "Sorry, er is iets fout gegaan... Robot Izzy is ermee bezig!"
+    "errorMessage": "Sorry, er is iets fout gegaan... Robot Izzy is ermee bezig!",
+    "connection": "Geen verbinding met het netwerk. Controleer de verbinding.",
+    "vinCodeNotFound": "Kan de VIN-code niet herkennen. Probeer een andere foto te uploaden.",
+    "regNumberNotFound": "Kan het kenteken niet herkennen. Probeer een andere foto te uploaden.",
+    "carNotFound": "Er is geen auto gevonden op basis van uw gegevens.",
+    "cameraAccess": "We hebben geen toestemming om de camera te gebruiken. Geef toegang alsjeblieft.",
+    "changeRegnum": "Nummer wijzigen"
 }

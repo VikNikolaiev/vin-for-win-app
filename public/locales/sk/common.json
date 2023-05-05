@@ -28,5 +28,11 @@
     "findPart": "Nájsť diel podľa fotografie",
     "toCatalog": "Prejsť na plný katalóg náhradných dielov",
     "footer": "Náhradné diely bez prostredníctva sprostredkovateľov",
-    "errorMessage": "Prepáčte, niečo sa pokazilo... Robot Izzy na tom pracuje!"
+    "errorMessage": "Prepáčte, niečo sa pokazilo... Robot Izzy na tom pracuje!",
+    "connection": "Žiadne pripojenie k sieti. Skontrolujte pripojenie.",
+    "vinCodeNotFound": "Nepodarilo sa rozpoznať VIN kód. Skúste nahrať inú fotografiu.",
+    "regNumberNotFound": "Nepodarilo sa rozpoznať číslo vozidla. Skúste nahrať inú fotografiu.",
+    "carNotFound": "Podľa vašich údajov nebolo vozidlo nájdené.",
+    "cameraAccess": "Nemáme povolenie na používanie kamery. Prosím, poskytnite nám prístup.",
+    "changeRegnum": "Zmeniť číslo"
 }

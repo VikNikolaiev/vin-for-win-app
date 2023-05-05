@@ -1,9 +1,10 @@
-import { useRouter } from 'next/router';
+import React from 'react';
 import GlobeIcon from '@avtopro/icons/dist/jsx/GlobeIcon';
 import SelectIcon, { Option } from '@avtopro/select';
 import { useTranslation } from 'next-i18next';
-import { useStore } from '@/context/mainContext';
+import { useRouter } from 'next/router';
 import styles from './LocaleSwitcher.module.less';
+import { useStore } from '@/context/mainContext';
 import { Engine } from '@/types/Engine';
 
 const LocaleSwitcher = () => {
@@ -32,8 +33,6 @@ const LocaleSwitcher = () => {
                 dropdownPosition="auto"
                 dropdown
                 blockSize="sm"
-                isMobile={true}
-                color="blue"
             >
                 {locales?.map((locale) => (
                     <Option

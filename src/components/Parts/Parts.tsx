@@ -67,6 +67,7 @@ const Parts = () => {
                                     onClick={() => {
                                         setStep('search');
                                         car.resetCar();
+                                        car.resetParts();
                                     }}
                                 >
                                     {car.carNumber !== '' && t('changeRegnum')}
@@ -111,7 +112,7 @@ const Parts = () => {
                                         }}
                                     >
                                         <div
-                                            className="g-col-2 g-col-lg-2 g-col-md-3 g-col-xs-2"
+                                            className={`g-col-2 g-col-lg-2 g-col-md-3 g-col-xs-2 ${styles.part__code}`}
                                             style={{ minWidth: '50px' }}
                                         >
                                             <Link

@@ -1,4 +1,5 @@
 @import '@avtopro/style/themes/default.less';
+@import '@avtopro/style/mixins/nowrap.less';
 
 .car__card {
     background: #ffffff;
@@ -22,6 +23,10 @@
     display: flex;
     height: 72px;
     margin: 10px;
+
+    @media screen and (max-width: 1250px) {
+        height: auto;
+    }
 }
 
 .car__name {
@@ -60,7 +65,13 @@
     }
 }
 
+.part__code {
+    .nowrap();
+}
+
 .part__title {
+    .nowrap();
+
     display: flex;
 }
 

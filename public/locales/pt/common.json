@@ -28,5 +28,11 @@
     "findPart": "Encontrar peça pela foto",
     "toCatalog": "Ir para o catálogo completo de peças de automóveis",
     "footer": "Peças sem intermediários",
-    "errorMessage": "Desculpe, algo deu errado... <br> O robô Izzy está trabalhando nisso!"
+    "errorMessage": "Desculpe, algo deu errado... <br> O robô Izzy está trabalhando nisso!",
+    "connection": "Sem conexão de rede. Verifique a conexão.",
+    "vinCodeNotFound": "Não foi possível reconhecer o código VIN. Tente carregar outra foto.",
+    "regNumberNotFound": "Não foi possível reconhecer o número do carro. Tente carregar outra foto.",
+    "carNotFound": "De acordo com suas informações, o carro não foi encontrado.",
+    "cameraAccess": "Não temos permissão para usar a câmera. Por favor, conceda acesso.",
+    "changeRegnum": "Alterar número"
 }

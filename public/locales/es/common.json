@@ -28,5 +28,11 @@
     "findPart": "Buscar pieza por foto",
     "toCatalog": "Ir al catálogo completo de piezas de automóvil",
     "footer": "Piezas sin intermediarios",
-    "errorMessage": "Lo siento, algo salió mal... ¡El robot Izzy está trabajando en ello!"
+    "errorMessage": "Lo siento, algo salió mal... ¡El robot Izzy está trabajando en ello!",
+    "connection": "No hay conexión de red. Por favor, compruebe su conexión.",
+    "vinCodeNotFound": "No se ha podido reconocer el código VIN. Intente cargar otra foto.",
+    "regNumberNotFound": "No se ha podido reconocer el número de matrícula. Intente cargar otra foto.",
+    "carNotFound": "No se ha encontrado ningún coche con sus datos.",
+    "cameraAccess": "No tenemos permiso para usar la cámara. Por favor, proporcione acceso.",
+    "changeRegnum": "Cambiar número"
 }

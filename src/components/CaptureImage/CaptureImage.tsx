@@ -20,6 +20,7 @@ export const CaptureImage = () => {
         blob: Blob;
     };
 
+    console.log(1);
     const handleFileInput = async (_: string, files: CustomFiles[]) => {
         if (files.length != 0) {
             setPending(true);

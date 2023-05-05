@@ -28,5 +28,11 @@
     "findPart": "Sök efter detalj med bild",
     "toCatalog": "Gå till fullständig katalog över bilreservdelar",
     "footer": "Reservdelar utan mellanhänder",
-    "errorMessage": "Ledsen, något gick fel... Robot Izzy arbetar på det!"
+    "errorMessage": "Ledsen, något gick fel... Robot Izzy arbetar på det!",
+    "connection": "Ingen anslutning till nätverket. Kontrollera anslutningen.",
+    "vinCodeNotFound": "Det gick inte att identifiera VIN-koden. Försök ladda upp en annan bild.",
+    "regNumberNotFound": "Det gick inte att identifiera bilens registreringsnummer. Försök ladda upp en annan bild.",
+    "carNotFound": "Bilen kunde inte hittas enligt dina uppgifter.",
+    "cameraAccess": "Vi har inte tillstånd att använda kameran. Ge tillstånd för kameraanvändning.",
+    "changeRegnum": "Ändra nummer"
 }

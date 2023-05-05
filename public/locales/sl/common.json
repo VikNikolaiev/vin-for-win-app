@@ -28,5 +28,11 @@
     "findPart": "Najdi del po fotografiji",
     "toCatalog": "Pojdite v celoten katalog rezervnih delov",
     "footer": "Rezervni deli brez posrednikov",
-    "errorMessage": "Oprostite, nekaj je šlo narobe... Robot Izzy dela na tem!"
+    "errorMessage": "Oprostite, nekaj je šlo narobe... Robot Izzy dela na tem!",
+    "connection": "Ni povezave s omrežjem. Preverite povezavo.",
+    "vinCodeNotFound": "VIN-koda ni bilo mogoče prepoznati. Poskusite naložiti drugo fotografijo.",
+    "regNumberNotFound": "Številke registrske tablice ni bilo mogoče prepoznati. Poskusite naložiti drugo fotografijo.",
+    "carNotFound": "Po vaših podatkih avtomobil ni bil najden.",
+    "cameraAccess": "Nimamo dovoljenja za uporabo kamere. Prosimo omogočite dostop.",
+    "changeRegnum": "Spremeni številko"
 }

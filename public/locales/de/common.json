@@ -28,5 +28,11 @@
     "findPart": "Teil per Foto finden",
     "toCatalog": "Zum vollständigen Autoteile-Katalog wechseln",
     "footer": "Ersatzteile ohne Vermittler",
-    "errorMessage": "Entschuldigung, etwas ist schief gelaufen... Robot Izzy arbeitet daran!"
+    "errorMessage": "Entschuldigung, etwas ist schief gelaufen... Robot Izzy arbeitet daran!",
+    "connection": "Keine Verbindung zum Netzwerk. Überprüfen Sie die Verbindung.",
+    "vinCodeNotFound": "Die VIN-Nummer konnte nicht erkannt werden. Versuchen Sie, ein anderes Foto zu laden.",
+    "regNumberNotFound": "Das Autokennzeichen konnte nicht erkannt werden. Versuchen Sie, ein anderes Foto zu laden.",
+    "carNotFound": "Das Auto wurde nicht gefunden.",
+    "cameraAccess": "Wir haben keine Berechtigung, die Kamera zu verwenden. Bitte geben Sie uns Zugriff.",
+    "changeRegnum": "Nummer ändern"
 }

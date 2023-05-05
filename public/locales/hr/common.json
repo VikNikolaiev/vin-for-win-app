@@ -28,5 +28,11 @@
     "findPart": "Pronađite dio po fotografiji",
     "toCatalog": "Prijelaz na puni katalog auto dijelova",
     "footer": "Auto dijelovi bez posrednika",
-    "errorMessage": "Žao nam je, nešto nije u redu... Izzie robot radi na tome!"
+    "errorMessage": "Žao nam je, nešto nije u redu... Izzie robot radi na tome!",
+    "connection": "Nema veze s mrežom. Provjerite vezu.",
+    "vinCodeNotFound": "Nije moguće prepoznati VIN kod. Pokušajte učitati drugu fotografiju.",
+    "regNumberNotFound": "Nije moguće prepoznati registracijski broj automobila. Pokušajte učitati drugu fotografiju.",
+    "carNotFound": "Automobil nije pronađen prema vašim podacima.",
+    "cameraAccess": "Nemamo dopuštenje za upotrebu kamere. Molimo omogućite pristup.",
+    "changeRegnum": "Promijeni broj"
 }

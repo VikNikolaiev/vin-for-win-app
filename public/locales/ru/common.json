@@ -29,8 +29,10 @@
     "toCatalog": "Перейти в полный каталог автозапчастей",
     "footer": "Запчасти без посредников",
     "errorMessage": "Извините, что-то пошло не так... Робот Иззи работает над этим!",
-    "connection": "connectionError",
-    "vinCodeNotFound": "vinCodeNotFound",
-    "regNumberNotFound": "regNumberNotFound",
-    "carNotFound": "carNotFound"
+    "connection": "Нет соединения с сетью. Проверьте подключение.",
+    "vinCodeNotFound": "Не удалось распознать VIN-код. Попробуйте загрузить другое фото.",
+    "regNumberNotFound": "Не удалось распознать номер автомобиля. Попробуйте загрузить другое фото",
+    "carNotFound": "По вашим данным не найден автомобиль.",
+    "cameraAccess": "У нас нет разрешения использовать камеру. Предоставьте, пожалуйста, доступ",
+    "changeRegnum": "Изменить номер"
 }

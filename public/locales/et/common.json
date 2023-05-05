@@ -28,5 +28,11 @@
     "findPart": "Leia osa foto järgi",
     "toCatalog": "Minge täielikku varuosakataloogi",
     "footer": "Varuosad ilma vahendajateta",
-    "errorMessage": "Vabandust, midagi läks valesti... Izzie robot töötab selle kallal!"
+    "errorMessage": "Vabandust, midagi läks valesti... Izzie robot töötab selle kallal!",
+    "connection": "Puudub ühendus võrguga. Kontrollige ühendust.",
+    "vinCodeNotFound": "VIN-koodi ei õnnestunud tuvastada. Proovige laadida üles teine foto.",
+    "regNumberNotFound": "Autonumbrit ei õnnestunud tuvastada. Proovige laadida üles teine foto.",
+    "carNotFound": "Teie andmete alusel autot ei leitud.",
+    "cameraAccess": "Meil pole luba kaamera kasutamiseks. Palun andke luba.",
+    "changeRegnum": "Muuda number"
 }

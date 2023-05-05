@@ -28,5 +28,11 @@
     "findPart": "Atrast detaļu pēc foto",
     "toCatalog": "Doties uz pilno auto rezerves daļu katalogu",
     "footer": "Rezerves daļas bez starpniekiem",
-    "errorMessage": "Atvainojiet, kaut kas nogāja greizi... Robots Izzy strādā pie tā!"
+    "errorMessage": "Atvainojiet, kaut kas nogāja greizi... Robots Izzy strādā pie tā!",
+    "connection": "Nav savienojuma ar tīklu. Pārbaudiet savienojumu.",
+    "vinCodeNotFound": "Nevar atpazīt VIN kodu. Lūdzu, ielādējiet citu fotoattēlu.",
+    "regNumberNotFound": "Nevar atpazīt transporta līdzekļa numuru. Lūdzu, ielādējiet citu fotoattēlu.",
+    "carNotFound": "Pēc jūsu datiem nav atrasts transportlīdzeklis.",
+    "cameraAccess": "Mums nav atļaujas izmantot kameru. Lūdzu, sniedziet piekļuvi.",
+    "changeRegnum": "Mainīt numuru"
 }
