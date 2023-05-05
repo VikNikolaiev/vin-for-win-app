@@ -1,5 +1,5 @@
+import { Model } from '@/models';
 import React, { useContext } from 'react';
-import Model from '../models';
 
 export const mainContext = React.createContext<Model | null>(null);
 

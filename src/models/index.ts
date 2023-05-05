@@ -4,7 +4,7 @@ import { SearchMode } from '@/types/SearchMode';
 import { action, makeAutoObservable, observable } from 'mobx';
 import Regnum from './Regnum';
 
-class Model {
+export class Model {
     searchMode: SearchMode;
 
     partPage: boolean = false;
