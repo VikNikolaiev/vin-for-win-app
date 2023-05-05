@@ -31,7 +31,7 @@ const Parts = () => {
                         />
                         <div style={{ margin: 'auto 0' }}>
                             <span className={styles.car__name}>
-                                {car.name} {car.engines[0].name}
+                                {car.name} {car.engine}
                             </span>
                             <span className={styles.car__vin}>
                                 {car.carNumber !== '' && `${car.carNumber}`}
