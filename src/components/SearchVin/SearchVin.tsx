@@ -89,25 +89,30 @@ const SearchVin = observer(() => {
                 {t('or')}
             </span>
             {searchMode === SearchMode.VIN ? <VinInput /> : <RegnumInput />}
-            <Button
-                className="g-col-2 g-start-6 g-col-xs-8 g-start-xs-2"
-                theme="prime"
-                uppercase
-                onClick={async () => {
-                    setPending(true);
-                    await car.getCar(searchMode === SearchMode.VIN ? vinSearch.vin : regnumSearch.regnum);
-                    if (car.engines.length > 1) {
-                        setMoreEngine(true);
-                    } else {
-                        await car.getParts(car.engines[0].id.toString());
-                    }
-                    setStep('engines');
-                    await setPending(false);
-                }}
-                disabled={!visibleButton()}
-            >
-                {t('carSearchButton')}
-            </Button>
+            <div style={{ textAlign: 'center' }} className="g-col-12">
+                <Button
+                    theme="prime"
+                    uppercase
+                    onClick={async () => {
+                        setPending(true);
+                        await car.getCar(
+                            searchMode === SearchMode.VIN
+                                ? vinSearch.vin
+                                : regnumSearch.regnum
+                        );
+                        if (car.engines.length > 1) {
+                            setMoreEngine(true);
+                        } else {
+                            await car.getParts(car.engines[0].id.toString());
+                        }
+                        setStep('engines');
+                        await setPending(false);
+                    }}
+                    disabled={!visibleButton()}
+                >
+                    {t('carSearchButton')}
+                </Button>
+            </div>
         </>
     );
 });

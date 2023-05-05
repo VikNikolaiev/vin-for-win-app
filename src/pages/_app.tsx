@@ -1,15 +1,12 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { mainContext } from '@/context/mainContext';
-
+import model from '@/models';
 import '@/styles/globals.less';
-import Model from '@/models';
 
 const App = ({ Component, pageProps }: AppProps) => {
-    const MemoValue = useMemo(() => new Model(), [new Model()]);
-
     const router = useRouter();
 
     useEffect(() => {
@@ -19,7 +16,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     }, []);
 
     return (
-        <mainContext.Provider value={MemoValue}>
+        <mainContext.Provider value={model}>
             <Component {...pageProps} />
         </mainContext.Provider>
     );

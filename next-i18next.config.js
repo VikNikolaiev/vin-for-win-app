@@ -40,8 +40,6 @@ module.exports = {
 
             'sv',
 
-            'be',
-
             'el',
 
             'lv',
