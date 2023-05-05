@@ -95,15 +95,16 @@ const SearchVin = observer(() => {
                 {t('or')}
             </span>
             {searchMode === SearchMode.VIN ? <VinInput /> : <RegnumInput />}
-            <Button
-                className="g-col-2 g-start-6 g-col-xs-8 g-start-xs-2"
-                theme="prime"
-                uppercase
-                onClick={handleFindCar}
-                disabled={!visibleButton()}
-            >
-                {t('carSearchButton')}
-            </Button>
+            <div style={{ textAlign: 'center' }} className="g-col-12">
+                <Button
+                    theme="prime"
+                    uppercase
+                    onClick={handleFindCar}
+                    disabled={!visibleButton()}
+                >
+                    {t('carSearchButton')}
+                </Button>
+            </div>
             {vinSearch.error && (
                 <ErrorWindow
                     error={vinSearch.error}

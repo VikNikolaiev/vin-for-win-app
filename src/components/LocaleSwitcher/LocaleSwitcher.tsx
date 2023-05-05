@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import GlobeIcon from '@avtopro/icons/dist/jsx/GlobeIcon';
-import { Option, SelectIcon } from '@avtopro/select';
+import SelectIcon, { Option } from '@avtopro/select';
 import { useTranslation } from 'next-i18next';
 import { useStore } from '@/context/mainContext';
 import styles from './LocaleSwitcher.module.less';
@@ -31,6 +31,8 @@ const LocaleSwitcher = () => {
                 dropdownPosition="auto"
                 dropdown
                 blockSize="sm"
+                isMobile={true}
+                color="blue"
             >
                 {locales?.map((locale) => (
                     <Option
@@ -42,6 +44,7 @@ const LocaleSwitcher = () => {
                     </Option>
                 ))}
             </SelectIcon>
+            {/* <span>{i18n.language.toUpperCase()}</span> */}
         </div>
     );
 };

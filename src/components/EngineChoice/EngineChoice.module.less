@@ -11,3 +11,13 @@
     color: @blackLightColor;
     line-height: 26px;
 }
+
+.engine__list {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr 1fr;
+
+    @media screen and (max-width: 750px) {
+        grid-template-columns: 0;
+    }
+}

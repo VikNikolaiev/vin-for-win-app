@@ -13,13 +13,7 @@ const EngineChoice = () => {
     return (
         <div className={styles.choice}>
             <p className={styles.desc}>{t('choiceEngine')}</p>
-            <ul
-                style={{
-                    display: 'grid',
-                    gap: '5px',
-                    gridTemplateColumns: '1fr 1fr'
-                }}
-            >
+            <ul className={styles.engine__list}>
                 {car.engines.map((item: Engine) => (
                     <li key={item.id} style={{ marginBottom: '0px' }}>
                         <Button
