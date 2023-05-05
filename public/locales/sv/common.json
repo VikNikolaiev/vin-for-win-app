@@ -27,5 +27,6 @@
     "overallPrice": "Totala kostnaden för reservdelar:",
     "findPart": "Sök efter detalj med bild",
     "toCatalog": "Gå till fullständig katalog över bilreservdelar",
-    "footer": "Reservdelar utan mellanhänder"
+    "footer": "Reservdelar utan mellanhänder",
+    "errorMessage": "Ledsen, något gick fel... Robot Izzy arbetar på det!"
 }

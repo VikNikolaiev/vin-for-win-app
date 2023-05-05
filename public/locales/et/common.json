@@ -27,5 +27,6 @@
     "overallPrice": "Varuosade koguhind:",
     "findPart": "Leia osa foto järgi",
     "toCatalog": "Minge täielikku varuosakataloogi",
-    "footer": "Varuosad ilma vahendajateta"
+    "footer": "Varuosad ilma vahendajateta",
+    "errorMessage": "Vabandust, midagi läks valesti... Izzie robot töötab selle kallal!"
 }

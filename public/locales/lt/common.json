@@ -27,5 +27,6 @@
     "overallPrice": "Bendras dalų kaina:",
     "findPart": "Ieškoti detalės pagal nuotrauką",
     "toCatalog": "Eiti į pilną automobilių dalys katalogą",
-    "footer": "Dalys be tarpininkų"
-    }
+    "footer": "Dalys be tarpininkų",
+    "errorMessage": "Atsiprašome, kažkas nepavyko... Robotas Izzy daro viską, kad tai ištaisytų!"
+}

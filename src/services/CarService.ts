@@ -1,12 +1,13 @@
-import axios, { AxiosError } from 'axios';
-import { Parts } from '@/types/Parts';
 import Car from '@/models/Car';
+import { CustomError } from '@/types/CustomError';
+import { Parts } from '@/types/Parts';
+import axios from 'axios';
 
 class CarService {
-    static async getCar(vin: string) {
+    static async getCar(vin: string, onError: (error: CustomError) => void) {
         try {
             const response = await axios.get<Car>(
-                `https://service-vin-search-api.azurewebsites.net/api/cars/car?VinCode=${vin}`,
+                `https://service-vin-search-api.azurewebsites.net/api/cars/car?${vin}`,
                 {
                     headers: {
                         AppLanguage: localStorage.getItem('lang')
@@ -14,16 +15,21 @@ class CarService {
                 }
             );
 
+            console.log(response.data);
+
             return response.data;
-        } catch (error: unknown) {
-            if (error instanceof AxiosError) {
-                throw error;
-            }
+        } catch (error) {
+            onError(CustomError.default);
+            console.log(error);
+            return null;
         }
-        return null;
     }
 
-    static async getParts(modelId: string, engineId: string) {
+    static async getParts(
+        modelId: string,
+        engineId: string,
+        onError: (error: CustomError) => void
+    ) {
         try {
             const response = await axios.get<Parts>(
                 `https://service-vin-search-api.azurewebsites.net/api/cars/car/parts?ModelId=${modelId}&EnginelId=${engineId}`,
@@ -35,12 +41,11 @@ class CarService {
             );
 
             return response.data;
-        } catch (error: unknown) {
-            if (error instanceof AxiosError) {
-                throw error;
-            }
+        } catch (error) {
+            onError(CustomError.default);
+            console.log(error);
+            return null;
         }
-        return null;
     }
 }
 

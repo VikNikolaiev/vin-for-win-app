@@ -1,13 +1,16 @@
 import { RegnumService } from '@/services/RegnumService';
+import { CustomError } from '@/types/CustomError';
 import { action, makeAutoObservable, observable } from 'mobx';
 
 class Regnum {
     regnum: string;
     isValid: boolean;
+    error: CustomError | null;
 
     constructor(regnum: string) {
         this.regnum = regnum || '';
         this.isValid = false;
+        this.error = null;
         makeAutoObservable(this, {
             regnum: observable,
             isValid: observable,
@@ -27,17 +30,24 @@ class Regnum {
         return pattern.test(regnum);
     }
 
+    onError(error: CustomError) {
+        this.error = error;
+    }
+
+    resetError() {
+        this.error = null;
+    }
+
     async getRegnumFromImage(image: Blob) {
         const formData = new FormData();
         formData.append('file', image);
 
-        try {
-            const newRegnum = await RegnumService.ocrRegnum(formData);
-            if (newRegnum) {
-                this.setRegnum(newRegnum);
-            }
-        } catch (error) {
-            console.log(error);
+        const newRegnum = await RegnumService.ocrRegnum(
+            formData,
+            (error: CustomError) => this.onError(error)
+        );
+        if (newRegnum) {
+            this.setRegnum(newRegnum);
         }
     }
 }

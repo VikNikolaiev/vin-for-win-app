@@ -27,5 +27,6 @@
     "overallPrice": "Całkowity koszt części:",
     "findPart": "Znajdź część na podstawie zdjęcia",
     "toCatalog": "Przejdź do pełnego katalogu części samochodowych",
-    "footer": "Części bez pośredników"
+    "footer": "Części bez pośredników",
+    "errorMessage": "Przepraszam, coś poszło nie tak... Robot Izzy pracuje nad tym!"
 }

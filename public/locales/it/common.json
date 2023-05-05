@@ -27,5 +27,6 @@
     "overallPrice": "Costo totale delle parti:",
     "findPart": "Trova il pezzo tramite foto",
     "toCatalog": "Vai al catalogo completo dei ricambi auto",
-    "footer": "Ricambi auto senza intermediari"
+    "footer": "Ricambi auto senza intermediari",
+    "errorMessage": "Spiacente, qualcosa è andato storto... Il robot Izzy sta lavorando su questo!"
 }

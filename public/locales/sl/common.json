@@ -27,5 +27,6 @@
     "overallPrice": "Skupna cena rezervnih delov:",
     "findPart": "Najdi del po fotografiji",
     "toCatalog": "Pojdite v celoten katalog rezervnih delov",
-    "footer": "Rezervni deli brez posrednikov"
+    "footer": "Rezervni deli brez posrednikov",
+    "errorMessage": "Oprostite, nekaj je šlo narobe... Robot Izzy dela na tem!"
 }
