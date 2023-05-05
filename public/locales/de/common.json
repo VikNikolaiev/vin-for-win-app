@@ -27,5 +27,6 @@
     "overallPrice": "Gesamtkosten für Ersatzteile:",
     "findPart": "Teil per Foto finden",
     "toCatalog": "Zum vollständigen Autoteile-Katalog wechseln",
-    "footer": "Ersatzteile ohne Vermittler"
+    "footer": "Ersatzteile ohne Vermittler",
+    "errorMessage": "Entschuldigung, etwas ist schief gelaufen... Robot Izzy arbeitet daran!"
 }

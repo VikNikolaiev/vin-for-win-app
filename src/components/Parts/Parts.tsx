@@ -1,14 +1,13 @@
-import React from 'react';
-import Button from '@avtopro/button';
-import { observer } from 'mobx-react-lite';
-import Link from 'next/link';
-import Image from 'next/image';
-import Preloader from '@avtopro/preloader';
-import { useTranslation } from 'next-i18next';
-import { useStore } from '@/context/mainContext';
 import EngineChoice from '@/components/EngineChoice/EngineChoice';
-import ArrowRightIcon from '@avtopro/icons/dist/jsx/ArrowRightIcon';
 import styles from '@/components/Parts/Parts.module.less';
+import { useStore } from '@/context/mainContext';
+import Button from '@avtopro/button';
+import ArrowRightIcon from '@avtopro/icons/dist/jsx/ArrowRightIcon';
+import Preloader from '@avtopro/preloader';
+import { observer } from 'mobx-react-lite';
+import { useTranslation } from 'next-i18next';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Parts = () => {
     const { t } = useTranslation();
@@ -35,7 +34,8 @@ const Parts = () => {
                                 {car.name} {car.engines[0].name}
                             </span>
                             <span className={styles.car__vin}>
-                                VIN: {car.vinCode}
+                                {car.carNumber !== '' && `${car.carNumber}`}
+                                {car.vinCode !== '' && `VIN:  ${car.vinCode}`}
                             </span>
                             <div style={{ display: 'flex', marginTop: '5px' }}>
                                 {!moreEngines && (
@@ -64,7 +64,8 @@ const Parts = () => {
                                         car.resetCar();
                                     }}
                                 >
-                                    {t('changeVin')}
+                                    {car.carNumber !== '' && t('changeRegnum')}
+                                    {car.vinCode !== '' && t('changeVin')}
                                 </Button>
                             </div>
                         </div>

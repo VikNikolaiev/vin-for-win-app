@@ -4,6 +4,7 @@ import Button from '@avtopro/button';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
 import { CaptureImage } from '../CaptureImage/CaptureImage';
+import { ErrorWindow } from '../ErrorWindow/ErrorWindow';
 import { RegnumInput } from '../RegnumInput/RegnumInput';
 import { VinInput } from '../VinInput/VinInput';
 import styles from './SearchVin.module.less';
@@ -38,19 +39,24 @@ const SearchVin = observer(() => {
         }
     };
 
-    // if (errorResponce) {
-    //     return (
-    //         <Modal
-    //             onClose={() => {
-    //                 setErrorPesponce((prev: boolean) => !prev);
-    //                 setOpenCamera((prev: boolean) => !prev);
-    //             }}
-    //             closeOnClick="true"
-    //         >
-    //             <p>{errorMessage}</p>
-    //         </Modal>
-    //     );
-    // } else {
+    const handleFindCar = async () => {
+        setPending(true);
+        await car.getCar(
+            searchMode === SearchMode.VIN
+                ? `VinCode=${vinSearch.vin}`
+                : `CarNumber=${regnumSearch.regnum}`
+        );
+        if (car.engines.length > 1) {
+            setMoreEngine(true);
+        }
+
+        if (!car.error) {
+            setStep('engines');
+        }
+
+        setPending(false);
+    };
+
     return (
         <>
             <div
@@ -93,26 +99,30 @@ const SearchVin = observer(() => {
                 <Button
                     theme="prime"
                     uppercase
-                    onClick={async () => {
-                        setPending(true);
-                        await car.getCar(
-                            searchMode === SearchMode.VIN
-                                ? vinSearch.vin
-                                : regnumSearch.regnum
-                        );
-                        if (car.engines.length > 1) {
-                            setMoreEngine(true);
-                        } else {
-                            await car.getParts(car.engines[0].id.toString());
-                        }
-                        setStep('engines');
-                        await setPending(false);
-                    }}
+                    onClick={handleFindCar}
                     disabled={!visibleButton()}
                 >
                     {t('carSearchButton')}
                 </Button>
             </div>
+            {vinSearch.error && (
+                <ErrorWindow
+                    error={vinSearch.error}
+                    resetError={() => vinSearch.resetError()}
+                />
+            )}
+            {regnumSearch.error && (
+                <ErrorWindow
+                    error={regnumSearch.error}
+                    resetError={() => regnumSearch.resetError()}
+                />
+            )}
+            {car.error && (
+                <ErrorWindow
+                    error={car.error}
+                    resetError={() => car.resetError()}
+                />
+            )}
         </>
     );
 });

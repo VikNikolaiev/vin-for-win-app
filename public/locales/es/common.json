@@ -27,5 +27,6 @@
     "overallPrice": "Precio total de las piezas:",
     "findPart": "Buscar pieza por foto",
     "toCatalog": "Ir al catálogo completo de piezas de automóvil",
-    "footer": "Piezas sin intermediarios"
+    "footer": "Piezas sin intermediarios",
+    "errorMessage": "Lo siento, algo salió mal... ¡El robot Izzy está trabajando en ello!"
 }

@@ -27,5 +27,6 @@
     "overallPrice": "Totale kosten van onderdelen:",
     "findPart": "Zoek onderdeel op foto",
     "toCatalog": "Ga naar de volledige catalogus van auto-onderdelen",
-    "footer": "Onderdelen zonder tussenpersonen"
+    "footer": "Onderdelen zonder tussenpersonen",
+    "errorMessage": "Sorry, er is iets fout gegaan... Robot Izzy is ermee bezig!"
 }

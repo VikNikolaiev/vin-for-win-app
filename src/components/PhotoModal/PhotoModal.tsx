@@ -64,7 +64,7 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                 imgRef.current.src = dataURL || '';
             }
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         } finally {
             setPending(false);
         }
@@ -74,24 +74,22 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
         if (photo) {
             setPending(true);
 
-            try {
-                if (searchMode === SearchMode.VIN) {
-                    await vinSearch.getVinFromImage(
-                        new File([photo], 'file.jpg')
-                    );
-                }
-
-                if (searchMode === SearchMode.REGNUM) {
-                    await regnumSearch.getRegnumFromImage(
-                        new File([photo], 'file.jpg')
-                    );
-                }
-            } catch (err) {
-                console.log(err);
-            } finally {
-                setOpenCamera(false);
-                setPending(false);
+            // try {
+            if (searchMode === SearchMode.VIN) {
+                await vinSearch.getVinFromImage(new File([photo], 'file.jpg'));
             }
+
+            if (searchMode === SearchMode.REGNUM) {
+                await regnumSearch.getRegnumFromImage(
+                    new File([photo], 'file.jpg')
+                );
+            }
+            // } catch (err) {
+            // console.log(err);
+            // } finally {
+            setOpenCamera(false);
+            setPending(false);
+            // }
         }
     };
 

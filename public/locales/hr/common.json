@@ -27,5 +27,6 @@
     "overallPrice": "Ukupna cijena dijelova:",
     "findPart": "Pronađite dio po fotografiji",
     "toCatalog": "Prijelaz na puni katalog auto dijelova",
-    "footer": "Auto dijelovi bez posrednika"
+    "footer": "Auto dijelovi bez posrednika",
+    "errorMessage": "Žao nam je, nešto nije u redu... Izzie robot radi na tome!"
 }

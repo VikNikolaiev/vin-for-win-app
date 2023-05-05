@@ -27,5 +27,6 @@
     "overallPrice": "Overall parts price:",
     "findPart": "Find a part by photo",
     "toCatalog": "Go to the full catalog of auto parts",
-    "footer": "Parts without intermediaries"
+    "footer": "Parts without intermediaries",
+    "errorMessage": "Sorry, something went wrong... Robot Izzy is working on it!"
 }

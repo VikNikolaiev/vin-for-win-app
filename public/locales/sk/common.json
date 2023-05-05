@@ -27,5 +27,6 @@
     "overallPrice": "Celková cena náhradných dielov:",
     "findPart": "Nájsť diel podľa fotografie",
     "toCatalog": "Prejsť na plný katalóg náhradných dielov",
-    "footer": "Náhradné diely bez prostredníctva sprostredkovateľov"
+    "footer": "Náhradné diely bez prostredníctva sprostredkovateľov",
+    "errorMessage": "Prepáčte, niečo sa pokazilo... Robot Izzy na tom pracuje!"
 }
