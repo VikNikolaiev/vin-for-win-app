@@ -1,5 +1,5 @@
 import { CustomError } from '@/types/CustomError';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export class VinService {
     static ocrVin = async (
@@ -13,8 +13,20 @@ export class VinService {
             );
             return vinFromServer.data;
         } catch (error) {
-            onError(CustomError.default);
-            return '';
+            const e = error as AxiosError;
+
+            switch (e.response?.status) {
+                case 400:
+                    onError(CustomError.vinCodeNotFound);
+                    break;
+                case undefined:
+                    onError(CustomError.connection);
+                    break;
+                default:
+                    onError(CustomError.default);
+                    break;
+            }
+            return null;
         }
     };
 }

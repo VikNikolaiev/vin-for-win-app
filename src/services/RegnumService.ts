@@ -1,5 +1,5 @@
 import { CustomError } from '@/types/CustomError';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export class RegnumService {
     static ocrRegnum = async (
@@ -13,8 +13,20 @@ export class RegnumService {
             );
             return regnumFromServer.data;
         } catch (error) {
-            onError(CustomError.default);
-            return '';
+            const e = error as AxiosError;
+
+            switch (e.response?.status) {
+                case 400:
+                    onError(CustomError.regNumberNotFound);
+                    break;
+                case undefined:
+                    onError(CustomError.connection);
+                    break;
+                default:
+                    onError(CustomError.default);
+                    break;
+            }
+            return null;
         }
     };
 }
