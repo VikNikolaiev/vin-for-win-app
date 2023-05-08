@@ -1,22 +1,22 @@
 import { useStore } from '@/context/mainContext';
 import Button from '@avtopro/button';
-import AskSmIcon from '@avtopro/icons/dist/jsx/AskSmIcon';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
 import router from 'next/router';
+import styles from './SearchVin.module.less';
+
+import AskSmIcon from '@avtopro/icons/dist/jsx/AskSmIcon';
+import dynamic from 'next/dynamic';
+import { Fragment } from 'react';
 import { CaptureImage } from '../CaptureImage/CaptureImage';
 import { ErrorWindow } from '../ErrorWindow/ErrorWindow';
 import ListIdentifiers from '../Listidentifiers/ListIdentifiers';
 import { VinInput } from '../VinInput/VinInput';
-import styles from './SearchVin.module.less';
 
-import dynamic from 'next/dynamic';
-import { Fragment } from 'react';
 const MyTooltip = dynamic<{
     id: string;
     html: boolean;
     place: string;
-    delayHide: number;
 }>(() => import('@avtopro/tooltip') as any, {
     ssr: false
 });
@@ -82,29 +82,31 @@ const SearchVin = observer(() => {
                 >
                     Search vehicle
                 </Button>
-                <div style={{ marginTop: '20px' }}>
-                    <span>{t('title__desc_vin')}</span>
-                    <Fragment>
-                        <span
-                            className="pro-icon-inline"
-                            data-for="test"
-                            data-tip={`
+            </div>
+            <div
+                className="g-col-12 g-col-xs-6"
+                style={{ textAlign: 'center' }}
+            >
+                <span>{t('title__desc_vin')}</span>
+                <Fragment>
+                    <span
+                        className="pro-icon-inline"
+                        data-for="vin-help"
+                        data-tip={`
                                 <p>VIN – уникальный код транспортного средства, состоящий из 17 символов.<br />
-                                VIN указан на обратной стороне технического паспорта автомобиля, на приборной панели автомобиля под лобовым стеклом и под капотом автомобиля.</p>
-                                <p>
-                                    <img src="/images/vin.png" style={{ width: 'auto' }} />
+                                VIN указан на обратной стороне технического паспорта автомобиля,<br />на приборной панели автомобиля под лобовым стеклом и под капотом автомобиля.<br /><br />
+                                <img src="/images/vin-example.webp" width="250" />
                                 </p>
                             `}
-                        >
-                            <AskSmIcon />
-                        </span>
-                    </Fragment>
-                </div>
+                    >
+                        <AskSmIcon />
+                    </span>
+                    <MyTooltip id="vin-help" html place="right" />
+                </Fragment>
             </div>
 
             <CaptureImage />
             <ListIdentifiers />
-            <MyTooltip id="test" html place="right" delayHide={500} />
 
             <span
                 className="g-col-4 g-start-5 g-col-xs-8 g-start-xs-2"
