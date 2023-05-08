@@ -1,18 +1,17 @@
 import React from 'react';
 import Head from 'next/head';
 import { observer } from 'mobx-react-lite';
-import Overlay from '@avtopro/overlay';
 import type { GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Preloader from '@avtopro/preloader';
+// import Preloader from '@avtopro/preloader';
 import Layout from '../components/Layout/Layout';
 import SearchVin from '../components/SearchVin/SearchVin';
 import Parts from '../components/Parts/Parts';
 import { useStore } from '../context/mainContext';
 
 const Home = () => {
-    const { step, pending } = useStore();
+    const { step } = useStore();
     const { t } = useTranslation();
 
     return (
@@ -32,13 +31,7 @@ const Home = () => {
             <Layout>
                 <h1 className="g-col-12">{t('title')}</h1>
                 {step == 'search' ? <SearchVin /> : <Parts />}
-                {pending && (
-                    <Overlay>
-                        <div style={{ color: 'white', fontSize: '24px' }}>
-                            <Preloader title={t('preloader')} />
-                        </div>
-                    </Overlay>
-                )}
+                {/* {pending && <Preloader fixed />} */}
             </Layout>
         </>
     );
