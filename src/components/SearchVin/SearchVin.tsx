@@ -17,6 +17,7 @@ const MyTooltip = dynamic<{
     id: string;
     html: boolean;
     place: string;
+    className: string;
 }>(() => import('@avtopro/tooltip') as any, {
     ssr: false
 });
