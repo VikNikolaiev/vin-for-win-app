@@ -1,7 +1,9 @@
+import Button from '@avtopro/button';
 import Modal from '@avtopro/modal';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
 import { FC } from 'react';
+import styles from './ErrorWindow.module.less';
 
 type Props = {
     error: string | null;
@@ -12,9 +14,16 @@ export const ErrorWindow: FC<Props> = observer(({ error, resetError }) => {
     const { t } = useTranslation();
 
     return (
-        <Modal mode="error" onClose={resetError} closeOnClick="true">
-            <div className="modwin__content">
+        <Modal mode="warning" onClose={resetError} closeOnClick>
+            <div className={`modwin__content ${styles.formContent}`}>
                 <div className="modwin__caption">{t(`${error}`)}</div>
+                <Button
+                    type="button"
+                    theme="blue"
+                    onClick={resetError}
+                >
+                    {t(`errorReturn__button`)}
+                </Button>
             </div>
         </Modal>
     );

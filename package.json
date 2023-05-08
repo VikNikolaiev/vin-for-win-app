@@ -20,6 +20,7 @@
         "@avtopro/select": "^0.16.8",
         "@avtopro/style": "^0.22.7-68cce67.0",
         "@avtopro/text-input": "^0.7.7-68cce67.0",
+        "@avtopro/tooltip": "^0.6.8",
         "@types/node": "18.15.11",
         "@types/react": "18.0.37",
         "@types/react-dom": "18.0.11",
