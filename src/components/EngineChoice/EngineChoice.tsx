@@ -15,8 +15,9 @@ const EngineChoice = () => {
             <p className={styles.desc}>{t('choiceEngine')}</p>
             <ul className={styles.engine__list}>
                 {car.engines.map((engine: Engine) => (
-                    <li key={engine.id} style={{ marginBottom: '0px' }}>
+                    <li key={engine.id}>
                         <Button
+                            className={styles.engine__link}
                             theme="link"
                             style={{ padding: '0' }}
                             onClick={async () => {
