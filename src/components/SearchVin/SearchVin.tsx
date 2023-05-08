@@ -64,7 +64,7 @@ const SearchVin = observer(() => {
     return (
         <>
             <div
-                className={`${styles.switcher} pro-btn-group g-col-12 g-col-xs-6`}
+                className={`${styles.switcher} pro-btn-group g-col-12 g-col-xs-12`}
             >
                 <Button
                     onClick={() => changeAplication()}
@@ -84,26 +84,31 @@ const SearchVin = observer(() => {
                 </Button>
             </div>
             <div
-                className="g-col-12 g-col-xs-6"
+                className="g-col-12 g-col-xs-12"
                 style={{ textAlign: 'center' }}
             >
                 <span>{t('title__desc_vin')}</span>
                 <Fragment>
                     <span
                         className="pro-icon-inline"
-                        data-for="vin-help"
+                        data-for="vinhelp"
                         data-tip={`
                                 <p>VIN – уникальный код транспортного средства, состоящий из 17 символов.<br />
                                 VIN указан на обратной стороне технического паспорта автомобиля,<br />на приборной панели автомобиля под лобовым стеклом и под капотом автомобиля.<br /><br />
-                                <img src="/images/vin-example.webp" width="250" />
+                                <img src="/images/vin-example.webp" width="150" />
                                 </p>
                             `}
                     >
                         <AskSmIcon />
                     </span>
-                    <MyTooltip id="vin-help" html place="right" />
                 </Fragment>
             </div>
+            <MyTooltip
+                id="vinhelp"
+                html
+                place="bottom"
+                className={styles.tool}
+            />
 
             <CaptureImage />
             <ListIdentifiers />
