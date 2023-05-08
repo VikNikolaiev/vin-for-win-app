@@ -1,7 +1,6 @@
 import { PhotoIndentifierService } from '@/services/PhotoIdentifierService';
 import { CustomError } from '@/types/CustomError';
-import { PhotoIdentifierResponse } from '@/types/PhotoIdentifier';
-import { SelectedIndentifier } from '@/types/SelectedIndentifier';
+import { PhotoIdentifierResponse } from '@/types/PhotoIdentifier';;
 import { action, makeAutoObservable, observable } from 'mobx';
 
 class PhotoIdentifier {

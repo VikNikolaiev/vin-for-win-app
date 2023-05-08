@@ -46,8 +46,6 @@ class Car {
     }
 
     async getCar(vin: string) {
-        console.log(vin);
-
         const car = await CarService.getCar(vin, (error: CustomError) =>
             this.onError(error)
         );

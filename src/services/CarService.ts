@@ -5,7 +5,6 @@ import axios, { AxiosError } from 'axios';
 
 class CarService {
     static async getCar(vin: string, onError: (error: CustomError) => void) {
-        console.log(vin);
         try {
             const response = await axios.get<Car>(
                 `https://service-vin-search-api.azurewebsites.net/api/cars/car?${vin}`,
@@ -15,8 +14,6 @@ class CarService {
                     }
                 }
             );
-
-            console.log(response.data);
 
             return response.data;
         } catch (error) {
