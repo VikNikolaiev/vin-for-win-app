@@ -50,7 +50,9 @@ module.exports = withPlugins(plugins, {
 
         '@avtopro/modal',
 
-        '@avtopro/panel'
+        '@avtopro/panel',
+
+        '@avtopro/tooltip'
     ],
 
     swcMinify: true,

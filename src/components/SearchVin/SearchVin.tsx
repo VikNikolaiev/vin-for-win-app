@@ -2,22 +2,29 @@ import { useStore } from '@/context/mainContext';
 import Button from '@avtopro/button';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
+import router from 'next/router';
+import styles from './SearchVin.module.less';
+
+import AskSmIcon from '@avtopro/icons/dist/jsx/AskSmIcon';
+import dynamic from 'next/dynamic';
+import { Fragment } from 'react';
 import { CaptureImage } from '../CaptureImage/CaptureImage';
 import { ErrorWindow } from '../ErrorWindow/ErrorWindow';
 import ListIdentifiers from '../Listidentifiers/ListIdentifiers';
 import { VinInput } from '../VinInput/VinInput';
-import styles from './SearchVin.module.less';
-import router from 'next/router';
+
+const MyTooltip = dynamic<{
+    id: string;
+    html: boolean;
+    place: string;
+}>(() => import('@avtopro/tooltip') as any, {
+    ssr: false
+});
 
 const SearchVin = observer(() => {
     const { t } = useTranslation();
-    const {
-        car,
-        setStep,
-        setPending,
-        setMoreEngine,
-        photoIndentifier
-    } = useStore();
+    const { car, setStep, setPending, setMoreEngine, photoIndentifier } =
+        useStore();
 
     const handleFindCar = async () => {
         setPending(true);
@@ -56,26 +63,6 @@ const SearchVin = observer(() => {
 
     return (
         <>
-            {/* <div
-                style={{ textAlign: 'center' }}
-                className="g-col-6 g-start-4  g-col-xs-8 g-start-xs-2"
-            >
-                <nav className="pro-btn-group">
-                    <Button
-                        className={`${styles.tab} ${
-                            searchMode == SearchMode.VIN ? styles.active : ''
-                        }`}
-                        onClick={() => setSearchMode(SearchMode.VIN)}
-                    >
-                        {t('vinTab')}
-                    </Button>
-                </nav>
-                <p style={{ marginTop: '20px' }}>
-                    {searchMode === SearchMode.VIN
-                        ? t('title__desc_vin')
-                        : t('title__desc_number')}
-                </p>
-            </div> */}
             <div
                 className={`${styles.switcher} pro-btn-group g-col-12 g-col-xs-6`}
             >
@@ -96,8 +83,31 @@ const SearchVin = observer(() => {
                     Search vehicle
                 </Button>
             </div>
+            <div
+                className="g-col-12 g-col-xs-6"
+                style={{ textAlign: 'center' }}
+            >
+                <span>{t('title__desc_vin')}</span>
+                <Fragment>
+                    <span
+                        className="pro-icon-inline"
+                        data-for="vin-help"
+                        data-tip={`
+                                <p>VIN – уникальный код транспортного средства, состоящий из 17 символов.<br />
+                                VIN указан на обратной стороне технического паспорта автомобиля,<br />на приборной панели автомобиля под лобовым стеклом и под капотом автомобиля.<br /><br />
+                                <img src="/images/vin-example.webp" width="250" />
+                                </p>
+                            `}
+                    >
+                        <AskSmIcon />
+                    </span>
+                    <MyTooltip id="vin-help" html place="right" />
+                </Fragment>
+            </div>
+
             <CaptureImage />
             <ListIdentifiers />
+
             <span
                 className="g-col-4 g-start-5 g-col-xs-8 g-start-xs-2"
                 style={{ textAlign: 'center' }}
