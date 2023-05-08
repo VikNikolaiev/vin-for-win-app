@@ -3,6 +3,7 @@ import Vin from '@/models/Vin';
 import { SearchMode } from '@/types/SearchMode';
 import { action, makeAutoObservable, observable } from 'mobx';
 import Regnum from './Regnum';
+import PhotoIdentifier from './PhotoIdentifier';
 
 export class Model {
     searchMode: SearchMode;
@@ -19,12 +20,15 @@ export class Model {
 
     regnumSearch: Regnum;
 
+    photoIndentifier: PhotoIdentifier;
+
     car: Car;
 
     constructor() {
         this.searchMode = SearchMode.VIN;
         this.vinSearch = new Vin('');
         this.regnumSearch = new Regnum('');
+        this.photoIndentifier = new PhotoIdentifier();
         this.car = new Car();
         makeAutoObservable(this, {
             searchMode: observable,

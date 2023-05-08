@@ -13,21 +13,26 @@ export const CaptureImage = () => {
     const { t } = useTranslation();
 
     const inputElement = useRef<HTMLInputElement>(null);
-    const { searchMode, vinSearch, regnumSearch, setPending } = useStore();
+    const {
+        searchMode,
+        vinSearch,
+        regnumSearch,
+        setPending,
+        photoIndentifier
+    } = useStore();
 
     type CustomFiles = {
         name: string;
         blob: Blob;
     };
 
-    console.log(1);
     const handleFileInput = async (_: string, files: CustomFiles[]) => {
         if (files.length != 0) {
             setPending(true);
 
             try {
                 if (searchMode === SearchMode.VIN) {
-                    await vinSearch.getVinFromImage(files[0].blob);
+                    await photoIndentifier.postPhoto(files[0].blob);
                 }
 
                 if (searchMode === SearchMode.REGNUM) {

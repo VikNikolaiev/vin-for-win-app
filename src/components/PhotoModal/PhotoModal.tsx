@@ -25,10 +25,13 @@ type Props = {
 
 const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
     const { t } = useTranslation();
-    const { searchMode, vinSearch, regnumSearch, setPending } = useStore();
+    const { searchMode, regnumSearch, setPending, photoIndentifier } =
+        useStore();
     const [photo, setPhoto] = useState<Blob>();
     const [takePhoto, setTakePhoto] = useState(false);
     const imgRef = React.useRef<HTMLImageElement>(null);
+
+    console.log(photoIndentifier.photoIndentifierData);
 
     const { error, startCamera, stopCamera, captureImage, videoRef } =
         useCaptureImage({
@@ -73,17 +76,8 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
     const sendCapture = async () => {
         if (photo) {
             setPending(true);
+            await photoIndentifier.postPhoto(new File([photo], 'file.jpg'));
 
-            if (searchMode === SearchMode.VIN) {
-                await vinSearch.getVinFromImage(new File([photo], 'file.jpg'));
-            }
-
-            if (searchMode === SearchMode.REGNUM) {
-                await regnumSearch.getRegnumFromImage(
-                    new File([photo], 'file.jpg')
-                );
-            }
-            
             setOpenCamera(false);
             setPending(false);
         }

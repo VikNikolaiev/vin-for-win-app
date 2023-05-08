@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
 import { CaptureImage } from '../CaptureImage/CaptureImage';
 import { ErrorWindow } from '../ErrorWindow/ErrorWindow';
-import { RegnumInput } from '../RegnumInput/RegnumInput';
+import ListIdentifiers from '../Listidentifiers/ListIdentifiers';
 import { VinInput } from '../VinInput/VinInput';
 import styles from './SearchVin.module.less';
 
@@ -14,38 +14,34 @@ const SearchVin = observer(() => {
     const {
         searchMode,
         setSearchMode,
-        vinSearch,
-        regnumSearch,
         car,
         setStep,
         setPending,
-        setMoreEngine
+        setMoreEngine,
+        photoIndentifier
     } = useStore();
 
-    const visibleButton = () => {
-        switch (searchMode) {
-            case SearchMode.VIN:
-                if (vinSearch.isValid) {
-                    return true;
-                }
-                break;
-            case SearchMode.REGNUM:
-                if (regnumSearch.isValid) {
-                    return true;
-                }
-                break;
-            default:
-                return false;
-        }
-    };
+    console.log(photoIndentifier.isValid);
 
     const handleFindCar = async () => {
         setPending(true);
-        await car.getCar(
-            searchMode === SearchMode.VIN
-                ? `VinCode=${vinSearch.vin}`
-                : `CarNumber=${regnumSearch.regnum}`
-        );
+        car.error = null;
+        if (
+            photoIndentifier.validateVin(photoIndentifier.selectedIndentifier)
+        ) {
+            console.log('vin');
+            await car.getCar(`VinCode=${photoIndentifier.selectedIndentifier}`);
+        }
+        if (
+            photoIndentifier.validateRegnum(
+                photoIndentifier.selectedIndentifier
+            )
+        ) {
+            console.log('number');
+            await car.getCar(
+                `CarNumber=${photoIndentifier.selectedIndentifier}`
+            );
+        }
         if (car.engines.length > 1) {
             setMoreEngine(true);
         }
@@ -72,14 +68,6 @@ const SearchVin = observer(() => {
                     >
                         {t('vinTab')}
                     </Button>
-                    <Button
-                        className={`${styles.tab} ${
-                            searchMode == SearchMode.REGNUM ? styles.active : ''
-                        }`}
-                        onClick={() => setSearchMode(SearchMode.REGNUM)}
-                    >
-                        {t('numberTab')}
-                    </Button>
                 </nav>
                 <p style={{ marginTop: '20px' }}>
                     {searchMode === SearchMode.VIN
@@ -88,33 +76,28 @@ const SearchVin = observer(() => {
                 </p>
             </div>
             <CaptureImage />
+            <ListIdentifiers />
             <span
                 className="g-col-4 g-start-5 g-col-xs-8 g-start-xs-2"
                 style={{ textAlign: 'center' }}
             >
                 {t('or')}
             </span>
-            {searchMode === SearchMode.VIN ? <VinInput /> : <RegnumInput />}
+            <VinInput />
             <div style={{ textAlign: 'center' }} className="g-col-12">
                 <Button
                     theme="prime"
                     uppercase
                     onClick={handleFindCar}
-                    disabled={!visibleButton()}
+                    disabled={!photoIndentifier.isValid}
                 >
                     {t('carSearchButton')}
                 </Button>
             </div>
-            {vinSearch.error && (
+            {photoIndentifier.error && (
                 <ErrorWindow
-                    error={vinSearch.error}
-                    resetError={() => vinSearch.resetError()}
-                />
-            )}
-            {regnumSearch.error && (
-                <ErrorWindow
-                    error={regnumSearch.error}
-                    resetError={() => regnumSearch.resetError()}
+                    error={photoIndentifier.error}
+                    resetError={() => photoIndentifier.resetError()}
                 />
             )}
             {car.error && (
