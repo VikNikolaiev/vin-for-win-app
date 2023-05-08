@@ -1,5 +1,4 @@
 import { useStore } from '@/context/mainContext';
-import { SearchMode } from '@/types/SearchMode';
 import Button from '@avtopro/button';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
@@ -13,8 +12,6 @@ import router from 'next/router';
 const SearchVin = observer(() => {
     const { t } = useTranslation();
     const {
-        searchMode,
-        setSearchMode,
         car,
         setStep,
         setPending,

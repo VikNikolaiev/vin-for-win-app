@@ -14,7 +14,7 @@ const roboto = Roboto({
 const Layout: FC<PropsWithChildren<unknown>> = ({ children }) => {
     const { pending } = useStore();
     return (
-        <div className={`${roboto.className}`}>
+        <div style={{ position: 'relative' }} className={`${roboto.className}`}>
             <Header />
             <div className="container">
                 <div className="grid-landing">{children}</div>
