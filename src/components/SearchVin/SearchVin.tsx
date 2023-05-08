@@ -21,15 +21,12 @@ const SearchVin = observer(() => {
         photoIndentifier
     } = useStore();
 
-    console.log(photoIndentifier.isValid);
-
     const handleFindCar = async () => {
         setPending(true);
         car.error = null;
         if (
             photoIndentifier.validateVin(photoIndentifier.selectedIndentifier)
         ) {
-            console.log('vin');
             await car.getCar(`VinCode=${photoIndentifier.selectedIndentifier}`);
         }
         if (
@@ -37,7 +34,6 @@ const SearchVin = observer(() => {
                 photoIndentifier.selectedIndentifier
             )
         ) {
-            console.log('number');
             await car.getCar(
                 `CarNumber=${photoIndentifier.selectedIndentifier}`
             );

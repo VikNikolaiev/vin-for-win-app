@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import { observer } from 'mobx-react-lite';
 import { useStore } from '@/context/mainContext';
 import CheckCircleSmIcon from '@avtopro/icons/dist/jsx/CheckCircleSmIcon';
+import { observer } from 'mobx-react-lite';
+import { FC } from 'react';
 import styles from './ListIdentifires.module.less';
 const ListIdentifiers: FC = () => {
     const { photoIndentifier } = useStore();
@@ -44,7 +44,7 @@ const ListIdentifiers: FC = () => {
                 )}
             </ul>
             <ul className={styles.list}>
-                {photoIndentifier.photoIndentifierData?.vinCodes?.map(
+                {photoIndentifier.photoIndentifierData?.carNumbers?.map(
                     (item, index) => {
                         return (
                             <li

@@ -3,6 +3,6 @@ export type PhotoIdentifier = {
     vinCodes: string[];
 };
 export type PhotoIdentifierResponse = {
-    carNumber: string[];
+    carNumbers: string[];
     vinCodes: string[];
 };

@@ -25,13 +25,11 @@ type Props = {
 
 const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
     const { t } = useTranslation();
-    const { searchMode, regnumSearch, setPending, photoIndentifier } =
+    const { searchMode, setPending, photoIndentifier } =
         useStore();
     const [photo, setPhoto] = useState<Blob>();
     const [takePhoto, setTakePhoto] = useState(false);
     const imgRef = React.useRef<HTMLImageElement>(null);
-
-    console.log(photoIndentifier.photoIndentifierData);
 
     const { error, startCamera, stopCamera, captureImage, videoRef } =
         useCaptureImage({

@@ -1,6 +1,5 @@
 import { useStore } from '@/context/mainContext';
 import TextInput from '@avtopro/text-input';
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
@@ -14,7 +13,6 @@ export const VinInput = observer(() => {
             <TextInput
                 className="g-col-4 g-start-5 g-col-lg-4 g-start-lg-5 g-col-md-6 g-start-md-4 g-col-sm-8 g-start-sm-3 g-col-xs-12 g-col-start-xs-1"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    console.log(e.target.value);
                     photoIndentifier.selectIndentifier(
                         e.target.value.toUpperCase()
                     );
