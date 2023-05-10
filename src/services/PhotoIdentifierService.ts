@@ -18,7 +18,7 @@ export class PhotoIndentifierService {
 
             switch (e.response?.status) {
                 case 400:
-                    onError(CustomError.vinCodeNotFound);
+                    onError(CustomError.searchValueNotFound);
                     break;
                 case undefined:
                     onError(CustomError.connection);
