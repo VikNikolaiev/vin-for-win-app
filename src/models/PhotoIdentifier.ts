@@ -1,7 +1,9 @@
 import { PhotoIndentifierService } from '@/services/PhotoIdentifierService';
 import { CustomError } from '@/types/CustomError';
-import { PhotoIdentifierResponse } from '@/types/PhotoIdentifier';;
+import { PhotoIdentifierResponse } from '@/types/PhotoIdentifier';
+import localforage from 'localforage';
 import { action, makeAutoObservable, observable } from 'mobx';
+import { makePersistable } from 'mobx-persist-store';
 
 class PhotoIdentifier {
     photoIndentifierData: PhotoIdentifierResponse | null = null;
@@ -18,6 +20,12 @@ class PhotoIdentifier {
             error: observable,
             postPhoto: action,
             selectIndentifier: action
+        });
+
+        makePersistable(this, {
+            name: 'PhotoIdentifier',
+            properties: ['photoIndentifierData', 'selectedIndentifier', 'isValid'],
+            storage: typeof window !== 'undefined' ? localforage : undefined
         });
     }
 

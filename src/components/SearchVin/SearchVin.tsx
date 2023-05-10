@@ -6,8 +6,9 @@ import { useTranslation } from 'next-i18next';
 import { CaptureImage } from '../CaptureImage/CaptureImage';
 import { ErrorWindow } from '../ErrorWindow/ErrorWindow';
 import ListIdentifiers from '../Listidentifiers/ListIdentifiers';
-import { VinInput } from '../VinInput/VinInput';
+import  VinInput from '../VinInput/VinInput';
 import styles from './SearchVin.module.less';
+import dynamic from 'next/dynamic';
 
 const SearchVin = observer(() => {
     const { t } = useTranslation();

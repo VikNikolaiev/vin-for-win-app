@@ -2,12 +2,20 @@ import { useStore } from '@/context/mainContext';
 import TextInput from '@avtopro/text-input';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-export const VinInput = observer(() => {
+const VinInput = () => {
     const { t } = useTranslation();
-
     const { photoIndentifier } = useStore();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
+
+    console.log(photoIndentifier.isValid);
     return (
         <>
             <TextInput
@@ -24,7 +32,7 @@ export const VinInput = observer(() => {
                 className="g-col-4 g-start-5 g-col-xs-8 g-start-xs-2"
                 style={{ minHeight: '20px', textAlign: 'center' }}
             >
-                {photoIndentifier.selectedIndentifier.length > 0 &&
+                {photoIndentifier.selectedIndentifier &&
                     !photoIndentifier.isValid && (
                         <span
                             style={{
@@ -37,4 +45,6 @@ export const VinInput = observer(() => {
             </div>
         </>
     );
-});
+};
+
+export default observer(VinInput);
