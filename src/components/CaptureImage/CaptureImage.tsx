@@ -68,9 +68,7 @@ export const CaptureImage = () => {
                 <i className="pro-icon-inline mr-x3">
                     <PhotoIcon />
                 </i>
-                {searchMode === SearchMode.VIN
-                    ? t('photo__panel_vin')
-                    : t('photo__panel_number')}
+                {t('photoPanel')}
             </Panel>
 
             {openPCCamera && <PhotoModal setOpenCamera={setOpenPCCamera} />}
@@ -100,11 +98,7 @@ export const CaptureImage = () => {
                 >
                     {(inputProps: object) => (
                         <FileDropZone
-                            title={
-                                searchMode === SearchMode.VIN
-                                    ? t('fileInput__desc_vin')
-                                    : t('fileInput__desc_number')
-                            }
+                            title={t('fileInput__desc')}
                             {...inputProps}
                         />
                     )}

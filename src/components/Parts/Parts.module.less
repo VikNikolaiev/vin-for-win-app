@@ -11,7 +11,6 @@
 .card__wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 
     @media screen and(max-width: 1000px) {
         flex-direction: column;
@@ -21,7 +20,7 @@
 
 .info__wrapper {
     display: flex;
-    margin: 10px;
+    padding: 10px;
 }
 
 .car__name {
@@ -42,6 +41,16 @@
 .car__photo {
     @media screen and (max-width: 1250px) {
         display: none;
+    }
+}
+
+.car__controls {
+    display: flex;
+    margin-top: 5px;
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column-reverse;
+        justify-content: flex-start;
     }
 }
 
@@ -83,18 +92,16 @@
 }
 
 .overallPrice__wrapper {
-    width: 143px;
     background: @whiteDarkestColor;
-    padding: 10px 0px 10px 15px;
+    padding-left: 15px;
     color: #3b3b3b;
 
     @media screen and(max-width: 1000px) {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        padding-left: 0;
+        padding: 10px;
         width: 100%;
-        height: auto;
     }
 }
 
@@ -132,10 +139,14 @@
 }
 
 .parts__buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    gap: 15px;
+
     @media screen and(max-width: 1000px) {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        gap: 10px;
     }
 }

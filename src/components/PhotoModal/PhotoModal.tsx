@@ -72,10 +72,9 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
 
     const sendCapture = async () => {
         if (photo) {
+            setOpenCamera(false);
             setPending(true);
             await photoIndentifier.postPhoto(new File([photo], 'file.jpg'));
-
-            setOpenCamera(false);
             setPending(false);
         }
     };
@@ -129,9 +128,7 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                                 {t('retakePhoto__button')}
                             </Button>
                             <Button theme="prime" onClick={sendCapture}>
-                                {searchMode === SearchMode.VIN
-                                    ? t('recognizeVin__button')
-                                    : t('recognizeNumber__button')}
+                                {t('recognizeButton')}
                             </Button>
                         </>
                     )}

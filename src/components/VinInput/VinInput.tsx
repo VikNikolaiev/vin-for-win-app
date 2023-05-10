@@ -26,7 +26,7 @@ const VinInput = () => {
                     );
                 }}
                 value={photoIndentifier.selectedIndentifier}
-                placeholder={t('inputVinPlaceholder')}
+                placeholder={t('inputPlaceholder')}
             />
             <div
                 className="g-col-4 g-start-5 g-col-xs-8 g-start-xs-2"
@@ -39,7 +39,7 @@ const VinInput = () => {
                                 color: 'red'
                             }}
                         >
-                            {t('invalidVin')}
+                            {t('invalidSearchValue')}
                         </span>
                     )}
             </div>
