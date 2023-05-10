@@ -4,8 +4,6 @@ import Modal from '@avtopro/modal';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
 import React, { FC, useEffect, useState } from 'react';
-
-import { SearchMode } from '@/types/SearchMode';
 import styles from './PhotoModal.module.less';
 
 const { useCaptureImage } = require('use-capture-image');
@@ -25,7 +23,7 @@ type Props = {
 
 const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
     const { t } = useTranslation();
-    const { searchMode, setPending, photoIndentifier } = useStore();
+    const { setPending, photoIndentifier } = useStore();
     const [photo, setPhoto] = useState<Blob>();
     const [takePhoto, setTakePhoto] = useState(false);
     const imgRef = React.useRef<HTMLImageElement>(null);
