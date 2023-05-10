@@ -1,6 +1,5 @@
 import PhotoModal from '@/components/PhotoModal/PhotoModal';
 import { useStore } from '@/context/mainContext';
-import { SearchMode } from '@/types/SearchMode';
 import FileInput, { FileDropZone } from '@avtopro/files-uploader';
 import PhotoIcon from '@avtopro/icons/dist/jsx/PhotoIcon';
 import Panel from '@avtopro/panel';
@@ -13,7 +12,7 @@ export const CaptureImage = () => {
     const { t } = useTranslation();
 
     const inputElement = useRef<HTMLInputElement>(null);
-    const { searchMode, setPending, photoIndentifier } = useStore();
+    const { setPending, photoIndentifier } = useStore();
 
     type CustomFiles = {
         name: string;

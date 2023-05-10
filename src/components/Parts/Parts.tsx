@@ -79,18 +79,20 @@ const Parts = () => {
                     </div>
                     {car.overallPrice && (
                         <div className={styles.overallPrice__wrapper}>
-                            <p className={styles.overallPrice__title}>
-                                {t('overallPrice')}
-                            </p>
-                            <p className={styles.overallPrice}>
-                                {car.overallPrice
-                                    .toString()
-                                    .replace(
-                                        /(\d)(?=(\d{3})+(?!\d))/g,
-                                        '$1 '
-                                    )}{' '}
-                                UAH
-                            </p>
+                            <div className={styles.overallPrice__content}>
+                                <p className={styles.overallPrice__title}>
+                                    {t('overallPrice')}
+                                </p>
+                                <p className={styles.overallPrice}>
+                                    {car.overallPrice
+                                        .toString()
+                                        .replace(
+                                            /(\d)(?=(\d{3})+(?!\d))/g,
+                                            '$1 '
+                                        )}{' '}
+                                    UAH
+                                </p>
+                            </div>
                         </div>
                     )}
                 </div>
@@ -113,7 +115,7 @@ const Parts = () => {
                                         }}
                                     >
                                         <div
-                                            className={`g-col-2 g-col-lg-2 g-col-md-3 g-col-xs-2 ${styles.part__code}`}
+                                            className={`g-col-2 g-col-lg-2 g-col-md-3 g-col-sm-3 g-col-xs-2 ${styles.part__code}`}
                                             style={{ minWidth: '50px' }}
                                         >
                                             <Link
@@ -125,7 +127,8 @@ const Parts = () => {
                                             <p>{item.brandName}</p>
                                         </div>
                                         <div
-                                            className={`${styles.part__title} g-col-8 g-col-lg-8 g-col-md-7 g-col-sm-7 g-col-xs-2`}
+                                            style={{ display: 'flex' }}
+                                            className="g-col-8 g-col-lg-8 g-col-md-7 g-col-sm-6 g-col-xs-2"
                                         >
                                             <Image
                                                 alt=""
@@ -137,7 +140,9 @@ const Parts = () => {
                                                 style={{ marginRight: '10px' }}
                                                 className={styles.part__photo}
                                             />
-                                            <p>{item.translatedName}</p>
+                                            <p className={styles.part__title}>
+                                                {item.translatedName}
+                                            </p>
                                         </div>
                                         <div
                                             style={{
