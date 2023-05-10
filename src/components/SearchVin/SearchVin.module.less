@@ -12,3 +12,43 @@
     color: @blackLightColor;
     background: @whiteDarkestColor;
 }
+
+.switcher {
+    border: 1px solid @whiteDarkestColor;
+    border-radius: @borderRadius;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0 auto;
+
+    &__btn {
+        color: @grayColor;
+        font-size: 14px;
+    }
+
+    &__btn--active {
+        pointer-events: none;
+        color: @blackColor;
+        background-color: @grayLightestColor;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    &__btn--inactive {
+        background-color: white;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+
+    &__btn--inactive:hover {
+        color: @blackColor;
+    }
+
+    &__btn--inactive:hover + &__btn--active {
+        background-color: white;
+        color: @grayColor;
+    }
+}
+
+.tool {
+    width: 200px;
+}
