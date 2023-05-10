@@ -39,13 +39,14 @@ const Parts = () => {
                                 {car.carNumber !== '' && `${car.carNumber}`}
                                 {car.vinCode !== '' && `VIN:  ${car.vinCode}`}
                             </span>
-                            <div style={{ display: 'flex', marginTop: '5px' }}>
+                            <div className={styles.car__controls}>
                                 {!moreEngines && (
                                     <Button
                                         theme="link"
                                         framed={false}
                                         square={false}
                                         style={{
+                                            width: 'fit-content',
                                             padding: '0px',
                                             marginRight: '20px'
                                         }}
@@ -62,6 +63,7 @@ const Parts = () => {
                                     framed={false}
                                     square={false}
                                     style={{
+                                        width: 'fit-content',
                                         padding: '0px'
                                     }}
                                     onClick={() => {
@@ -70,8 +72,7 @@ const Parts = () => {
                                         car.resetParts();
                                     }}
                                 >
-                                    {car.carNumber !== '' && t('changeRegnum')}
-                                    {car.vinCode !== '' && t('changeVin')}
+                                    {t('changeSearchValue')}
                                 </Button>
                             </div>
                         </div>
@@ -165,14 +166,13 @@ const Parts = () => {
                     </div>
                     <div
                         className={styles.parts__buttons}
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            paddingTop: '15px'
-                        }}
+                        // style={{
+                        //     display: 'flex',
+                        //     justifyContent: 'space-between',
+                        //     paddingTop: '15px'
+                        // }}
                     >
                         <Link
-                            target="_blank"
                             href={`https://zealous-bay-07bf8c303.3.azurestaticapps.net/${router.locale}?modelId=${car.id}`}
                         >
                             <Button theme="light-blue">{t('findPart')}</Button>
