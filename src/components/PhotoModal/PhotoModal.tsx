@@ -48,8 +48,15 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
         startCamera();
     }, []);
 
+    useEffect(() => {
+        if (error !== null) {
+            setPending(false);
+        }
+    }, [error]);
+
     const handleCapture = async () => {
         setPending(true);
+        console.log(error);
 
         try {
             const imgBlob = await captureImage();
@@ -77,6 +84,7 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
         }
     };
 
+    console.log(error);
     return (
         <div>
             <Modal
@@ -103,7 +111,9 @@ const PhotoModal: FC<Props> = ({ setOpenCamera }) => {
                         <img ref={imgRef} alt="" />
                     </div>
                 )}
-                {error && <p>{error.message}</p>}
+                {error && (
+                    <p className={styles.cameraAccess}>{t('cameraAccess')}</p>
+                )}
                 <div className={styles.modal__controls}>
                     {!takePhoto ? (
                         <Button

@@ -46,8 +46,9 @@ const SearchVin = observer(() => {
         if (car.engines.length > 1) {
             setMoreEngine(true);
         }
-
-        router.push('/parts');
+        if (!car.error) {
+            router.push('/parts');
+        }
 
         setPending(false);
     };

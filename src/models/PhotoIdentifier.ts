@@ -71,6 +71,11 @@ class PhotoIdentifier {
     resetError() {
         this.error = null;
     }
+
+    resetData() {
+        this.photoIndentifierData = null;
+        this.selectedIndentifier = '';
+    }
 }
 
 export default PhotoIdentifier;

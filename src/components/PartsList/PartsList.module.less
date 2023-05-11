@@ -37,6 +37,27 @@
     font-size: 13px;
     line-height: 20px;
     color: #7b7b7b;
+
+    @media screen and (max-width: 780px) {
+        display: none;
+    }
+}
+
+.car-vinOrSearch__mobile {
+    display: none;
+    font-size: 11px;
+    margin-top: 5px;
+
+    @media screen and (max-width: 780px) {
+        display: block;
+    }
+}
+
+.car-photo__wrapper {
+
+    @media screen and (max-width: 780px) {
+        margin-right: 0;
+    }
 }
 
 .car__photo {
@@ -50,7 +71,6 @@
     flex-wrap: wrap;
 
     @media screen and (max-width: 780px) {
-        justify-content: flex-start;
         display: none;
     }
 }

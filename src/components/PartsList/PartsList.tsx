@@ -21,17 +21,22 @@ const Parts = () => {
             <div className={styles.car__card}>
                 <div className={styles.card__wrapper}>
                     <div className={styles.info__wrapper}>
-                        <Image
-                            alt=""
-                            width="108"
-                            height="72"
-                            loader={() => car.imgUrl}
-                            src={car.imgUrl}
-                            unoptimized
-                            style={{ marginRight: '20px' }}
-                            className={styles.car__photo}
-                        />
-                        <div style={{ margin: 'auto 0' }}>
+                        <div className={styles['car-photo__wrapper']}>
+                            <Image
+                                alt=""
+                                width="108"
+                                height="72"
+                                loader={() => car.imgUrl}
+                                src={car.imgUrl}
+                                unoptimized
+                                className={styles.car__photo}
+                            />
+                            <span className={styles['car-vinOrSearch__mobile']}>
+                                {car.carNumber !== '' && `${car.carNumber}`}
+                                {car.vinCode !== '' && `${car.vinCode}`}
+                            </span>
+                        </div>
+                        <div style={{ marginLeft: '10px' }}>
                             <span className={styles.car__name}>
                                 {car.name} {car.engine?.name}
                             </span>
@@ -76,44 +81,42 @@ const Parts = () => {
                                 </Button>
                             </div>
                         </div>
-                        
                     </div>
                     <div className={styles.car__controls_mobile}>
-                                {car.engines.length > 1 &&
-                                    car.engine !== null && (
-                                        <Button
-                                            theme="link"
-                                            framed={false}
-                                            square={false}
-                                            style={{
-                                                width: 'fit-content',
-                                                padding: '0px',
-                                                marginRight: '20px'
-                                            }}
-                                            onClick={() => {
-                                                setMoreEngine(true);
-                                                car.resetParts();
-                                                car.resetEngine();
-                                            }}
-                                        >
-                                            {t('changeEngine')}
-                                        </Button>
-                                    )}
-                                <Button
-                                    theme="link"
-                                    framed={false}
-                                    square={false}
-                                    style={{
-                                        width: 'fit-content',
-                                        padding: '0px'
-                                    }}
-                                    onClick={() => {
-                                        router.push('/');
-                                    }}
-                                >
-                                    {t('changeSearchValue')}
-                                </Button>
-                            </div>
+                        {car.engines.length > 1 && car.engine !== null && (
+                            <Button
+                                theme="link"
+                                framed={false}
+                                square={false}
+                                style={{
+                                    width: 'fit-content',
+                                    padding: '0px',
+                                    marginRight: '20px'
+                                }}
+                                onClick={() => {
+                                    setMoreEngine(true);
+                                    car.resetParts();
+                                    car.resetEngine();
+                                }}
+                            >
+                                {t('changeEngine')}
+                            </Button>
+                        )}
+                        <Button
+                            theme="link"
+                            framed={false}
+                            square={false}
+                            style={{
+                                width: 'fit-content',
+                                padding: '0px'
+                            }}
+                            onClick={() => {
+                                router.push('/');
+                            }}
+                        >
+                            {t('changeSearchValue')}
+                        </Button>
+                    </div>
                     {car.engine && (
                         <div className={styles.overallPrice__wrapper}>
                             <div className={styles.overallPrice__content}>
