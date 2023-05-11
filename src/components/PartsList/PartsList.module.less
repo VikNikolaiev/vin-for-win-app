@@ -28,7 +28,6 @@
     display: block;
     font-weight: 700;
     font-size: 16px;
-    max-width: 200px;
     line-height: 24px;
     color: #3b3b3b;
 
@@ -38,10 +37,8 @@
 }
 
 .car__vin {
-    font-weight: 400;
     font-size: 13px;
-    line-height: 20px;
-    color: #7b7b7b;
+    color: @grayColor;
 
     @media screen and (max-width: 780px) {
         display: none;
@@ -52,6 +49,7 @@
     display: none;
     font-size: 11px;
     margin-top: 5px;
+    color: @grayColor;
 
     @media screen and (max-width: 780px) {
         display: block;
@@ -65,7 +63,7 @@
 }
 
 .car__photo {
-    width: 108px;
+    min-width: 108px;
     height: 72px;
 }
 
