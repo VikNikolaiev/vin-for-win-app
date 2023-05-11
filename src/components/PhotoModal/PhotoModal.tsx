@@ -1,9 +1,9 @@
-import { useStore } from '@/context/mainContext';
+import React, { FC, useEffect, useState } from 'react';
 import Button from '@avtopro/button';
 import Modal from '@avtopro/modal';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
-import React, { FC, useEffect, useState } from 'react';
+import { useStore } from '@/context/mainContext';
 import styles from './PhotoModal.module.less';
 
 const { useCaptureImage } = require('use-capture-image');

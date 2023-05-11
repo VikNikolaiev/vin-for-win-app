@@ -1,5 +1,4 @@
 import EngineChoice from '@/components/EngineChoice/EngineChoice';
-import styles from '@/components/Parts/Parts.module.less';
 import { useStore } from '@/context/mainContext';
 import { useRouter } from 'next/router';
 import Button from '@avtopro/button';
@@ -9,11 +8,12 @@ import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 import Link from 'next/link';
+import styles from './PartsList.module.less';
 
 const Parts = () => {
     const { t } = useTranslation();
     const router = useRouter();
-    const { car, moreEngines, setStep, setMoreEngine } = useStore();
+    const { car, moreEngines, setMoreEngine } = useStore();
     const partsList = car.parts;
 
     return (
@@ -40,7 +40,7 @@ const Parts = () => {
                                 {car.vinCode !== '' && `VIN:  ${car.vinCode}`}
                             </span>
                             <div className={styles.car__controls}>
-                                {!moreEngines && (
+                                {car.engines.length > 1 && (
                                     <Button
                                         theme="link"
                                         framed={false}
@@ -52,6 +52,7 @@ const Parts = () => {
                                         }}
                                         onClick={() => {
                                             setMoreEngine(true);
+                                            car.resetParts();
                                             car.resetEngine();
                                         }}
                                     >
@@ -67,9 +68,7 @@ const Parts = () => {
                                         padding: '0px'
                                     }}
                                     onClick={() => {
-                                        setStep('search');
-                                        car.resetCar();
-                                        car.resetParts();
+                                        router.push('/');
                                     }}
                                 >
                                     {t('changeSearchValue')}
@@ -137,7 +136,6 @@ const Parts = () => {
                                                 loader={() => item.imgUrl}
                                                 src={item.imgUrl}
                                                 unoptimized
-                                                style={{ marginRight: '10px' }}
                                                 className={styles.part__photo}
                                             />
                                             <p className={styles.part__title}>
@@ -169,14 +167,7 @@ const Parts = () => {
                             </div>
                         )}
                     </div>
-                    <div
-                        className={styles.parts__buttons}
-                        // style={{
-                        //     display: 'flex',
-                        //     justifyContent: 'space-between',
-                        //     paddingTop: '15px'
-                        // }}
-                    >
+                    <div className={styles.parts__buttons}>
                         <Link
                             href={`https://zealous-bay-07bf8c303.3.azurestaticapps.net/${router.locale}?modelId=${car.id}`}
                         >

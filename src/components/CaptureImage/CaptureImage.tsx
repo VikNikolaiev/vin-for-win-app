@@ -1,11 +1,11 @@
+import React, { useRef, useState } from 'react';
 import PhotoModal from '@/components/PhotoModal/PhotoModal';
-import { useStore } from '@/context/mainContext';
 import FileInput, { FileDropZone } from '@avtopro/files-uploader';
 import PhotoIcon from '@avtopro/icons/dist/jsx/PhotoIcon';
 import Panel from '@avtopro/panel';
 import { useTranslation } from 'next-i18next';
-import React, { useRef, useState } from 'react';
 import { isMobile } from 'react-device-detect';
+import { useStore } from '@/context/mainContext';
 
 export const CaptureImage = () => {
     const [openPCCamera, setOpenPCCamera] = useState<boolean>(false);

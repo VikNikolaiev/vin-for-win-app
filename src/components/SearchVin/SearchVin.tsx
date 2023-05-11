@@ -1,17 +1,16 @@
-import { useStore } from '@/context/mainContext';
+import { Fragment } from 'react';
 import Button from '@avtopro/button';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
 import router from 'next/router';
-import styles from './SearchVin.module.less';
-
 import AskSmIcon from '@avtopro/icons/dist/jsx/AskSmIcon';
 import dynamic from 'next/dynamic';
-import { Fragment } from 'react';
-import { CaptureImage } from '../CaptureImage/CaptureImage';
-import { ErrorWindow } from '../ErrorWindow/ErrorWindow';
-import ListIdentifiers from '../Listidentifiers/ListIdentifiers';
+import { CaptureImage } from '@/components/CaptureImage/CaptureImage';
+import { ErrorWindow } from '@/components/ErrorWindow/ErrorWindow';
+import ListIdentifiers from '@/components/Listidentifiers/ListIdentifiers';
 import VinInput from '../VinInput/VinInput';
+import { useStore } from '@/context/mainContext';
+import styles from './SearchVin.module.less';
 
 const MyTooltip = dynamic<{
     id: string;
@@ -22,11 +21,9 @@ const MyTooltip = dynamic<{
     ssr: false
 });
 
-
 const SearchVin = observer(() => {
     const { t } = useTranslation();
-    const { car, setStep, setPending, setMoreEngine, photoIndentifier } =
-        useStore();
+    const { car, setPending, setMoreEngine, photoIndentifier } = useStore();
 
     const handleFindCar = async () => {
         setPending(true);
@@ -49,11 +46,9 @@ const SearchVin = observer(() => {
             setMoreEngine(true);
         }
 
-        if (!car.error) {
-            setStep('engines');
-        }
-
         setPending(false);
+
+        router.push('/parts');
     };
 
     const changeAplication = () => {
