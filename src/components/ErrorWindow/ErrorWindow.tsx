@@ -1,8 +1,8 @@
+import { FC } from 'react';
 import Button from '@avtopro/button';
 import Modal from '@avtopro/modal';
 import { observer } from 'mobx-react-lite';
 import { useTranslation } from 'next-i18next';
-import { FC } from 'react';
 import styles from './ErrorWindow.module.less';
 
 type Props = {

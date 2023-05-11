@@ -14,7 +14,7 @@ export class Model {
 
     moreEngines: boolean = false;
 
-    step: string = 'search';
+    // step: string = 'search';
 
     vinSearch: Vin;
 
@@ -36,9 +36,9 @@ export class Model {
         });
     }
 
-    setStep = (step: string) => {
-        this.step = step;
-    };
+    // setStep = (step: string) => {
+    //     this.step = step;
+    // };
 
     setPending = (pending: boolean) => {
         this.pending = pending;

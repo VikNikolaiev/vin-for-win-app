@@ -3,9 +3,9 @@ import GlobeIcon from '@avtopro/icons/dist/jsx/GlobeIcon';
 import SelectIcon, { Option } from '@avtopro/select';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import styles from './LocaleSwitcher.module.less';
 import { useStore } from '@/context/mainContext';
 import { Engine } from '@/types/Engine';
+import styles from './LocaleSwitcher.module.less';
 
 const LocaleSwitcher = () => {
     const { i18n } = useTranslation();
@@ -15,7 +15,7 @@ const LocaleSwitcher = () => {
 
     const changeLanguage = (_: undefined, value: [string]): void => {
         localStorage.setItem('lang', value[0]);
-        router.push(router.asPath, router.asPath, { locale: value[0] });
+        router.replace(router.asPath, router.asPath, { locale: value[0] });
         if (car.parts.length) {
             car.getParts(car.engine as Engine);
         }

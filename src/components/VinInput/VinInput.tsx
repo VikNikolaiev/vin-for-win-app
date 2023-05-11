@@ -15,7 +15,6 @@ const VinInput = () => {
 
     if (!mounted) return null;
 
-    console.log(photoIndentifier.isValid);
     return (
         <>
             <TextInput

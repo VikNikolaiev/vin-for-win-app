@@ -1,21 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import { observer } from 'mobx-react-lite';
 import type { GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../components/Layout/Layout';
-import SearchVin from '../components/SearchVin/SearchVin';
-import { useRouter } from 'next/router';
+import PartsList from '../components/PartsList/PartsList';
+import HOCWrapper from './HOCWrapper';
 
-const Home = () => {
+const Parts = () => {
     const { t } = useTranslation();
-    const router = useRouter();
-    useEffect(() => {
-        if (router.pathname === '/parts') {
-            router.replace('/');
-        }
-    }, []);
 
     return (
         <>
@@ -33,7 +27,7 @@ const Home = () => {
             </Head>
             <Layout>
                 <h1 className="g-col-12">{t('title')}</h1>
-                <SearchVin />
+                <PartsList />
             </Layout>
         </>
     );
@@ -45,4 +39,4 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
     }
 });
 
-export default observer(Home);
+export default HOCWrapper(observer(Parts));
