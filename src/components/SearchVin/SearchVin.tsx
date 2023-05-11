@@ -27,6 +27,7 @@ const SearchVin = observer(() => {
 
     const handleFindCar = async () => {
         setPending(true);
+        car.resetCar();
         car.error = null;
         if (
             photoIndentifier.validateVin(photoIndentifier.selectedIndentifier)
