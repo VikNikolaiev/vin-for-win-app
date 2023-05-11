@@ -24,7 +24,11 @@ class PhotoIdentifier {
 
         makePersistable(this, {
             name: 'PhotoIdentifier',
-            properties: ['photoIndentifierData', 'selectedIndentifier', 'isValid'],
+            properties: [
+                'photoIndentifierData',
+                'selectedIndentifier',
+                'isValid'
+            ],
             storage: typeof window !== 'undefined' ? localforage : undefined
         });
     }
@@ -53,7 +57,7 @@ class PhotoIdentifier {
     }
 
     validateVin(vin: string) {
-        const pattern = /[A-HJ-NPR-Z0-9]{17}/;
+        const pattern = /^[A-HJ-NPR-Z0-9]{17}$/;
 
         return pattern.test(vin);
     }
