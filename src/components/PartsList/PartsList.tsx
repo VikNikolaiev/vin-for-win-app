@@ -76,8 +76,45 @@ const Parts = () => {
                                 </Button>
                             </div>
                         </div>
+                        
                     </div>
-                    {car.overallPrice && (
+                    <div className={styles.car__controls_mobile}>
+                                {car.engines.length > 1 &&
+                                    car.engine !== null && (
+                                        <Button
+                                            theme="link"
+                                            framed={false}
+                                            square={false}
+                                            style={{
+                                                width: 'fit-content',
+                                                padding: '0px',
+                                                marginRight: '20px'
+                                            }}
+                                            onClick={() => {
+                                                setMoreEngine(true);
+                                                car.resetParts();
+                                                car.resetEngine();
+                                            }}
+                                        >
+                                            {t('changeEngine')}
+                                        </Button>
+                                    )}
+                                <Button
+                                    theme="link"
+                                    framed={false}
+                                    square={false}
+                                    style={{
+                                        width: 'fit-content',
+                                        padding: '0px'
+                                    }}
+                                    onClick={() => {
+                                        router.push('/');
+                                    }}
+                                >
+                                    {t('changeSearchValue')}
+                                </Button>
+                            </div>
+                    {car.engine && (
                         <div className={styles.overallPrice__wrapper}>
                             <div className={styles.overallPrice__content}>
                                 <p className={styles.overallPrice__title}>

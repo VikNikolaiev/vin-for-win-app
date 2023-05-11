@@ -40,17 +40,28 @@
 }
 
 .car__photo {
-    @media screen and (max-width: 1250px) {
-        display: none;
-    }
+    width: 108px;
+    height: 72px;
 }
 
 .car__controls {
     display: flex;
     margin-top: 5px;
+    flex-wrap: wrap;
 
-    @media screen and (max-width: 600px) {
-        flex-direction: column-reverse;
+    @media screen and (max-width: 780px) {
+        justify-content: flex-start;
+        display: none;
+    }
+}
+
+.car__controls_mobile {
+    padding: 5px;
+    display: none;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 780px) {
+        display: flex;
         justify-content: flex-start;
     }
 }
@@ -85,11 +96,16 @@
 
     margin-right: 10px;
     padding: 2px;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
 }
 
 .part__photo {
     width: 51px;
     height: 34px;
+
     @media screen and (max-width: 768px) {
         display: none;
     }
