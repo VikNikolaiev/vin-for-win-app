@@ -66,17 +66,13 @@ const SearchVin = observer(() => {
             >
                 <Button
                     onClick={() => changeAplication()}
-                    className={
-                        (styles.switcher__btn,
-                        styles['switcher__btn--inactive'])
-                    }
+                    className={`${styles.switcher__btn}
+                        ${styles['switcher__btn--inactive']}`}
                 >
                     {t('partTab')}
                 </Button>
                 <Button
-                    className={
-                        (styles.switcher__btn, styles['switcher__btn--active'])
-                    }
+                    className={`${styles.switcher__btn} ${styles['switcher__btn--active']}`}
                 >
                     {t('carTab')}
                 </Button>
