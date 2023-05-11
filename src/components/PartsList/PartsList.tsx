@@ -40,25 +40,26 @@ const Parts = () => {
                                 {car.vinCode !== '' && `VIN:  ${car.vinCode}`}
                             </span>
                             <div className={styles.car__controls}>
-                                {car.engines.length > 1 && (
-                                    <Button
-                                        theme="link"
-                                        framed={false}
-                                        square={false}
-                                        style={{
-                                            width: 'fit-content',
-                                            padding: '0px',
-                                            marginRight: '20px'
-                                        }}
-                                        onClick={() => {
-                                            setMoreEngine(true);
-                                            car.resetParts();
-                                            car.resetEngine();
-                                        }}
-                                    >
-                                        {t('changeEngine')}
-                                    </Button>
-                                )}
+                                {car.engines.length > 1 &&
+                                    car.engine !== null && (
+                                        <Button
+                                            theme="link"
+                                            framed={false}
+                                            square={false}
+                                            style={{
+                                                width: 'fit-content',
+                                                padding: '0px',
+                                                marginRight: '20px'
+                                            }}
+                                            onClick={() => {
+                                                setMoreEngine(true);
+                                                car.resetParts();
+                                                car.resetEngine();
+                                            }}
+                                        >
+                                            {t('changeEngine')}
+                                        </Button>
+                                    )}
                                 <Button
                                     theme="link"
                                     framed={false}

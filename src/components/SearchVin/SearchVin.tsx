@@ -47,9 +47,9 @@ const SearchVin = observer(() => {
             setMoreEngine(true);
         }
 
-        setPending(false);
-
         router.push('/parts');
+
+        setPending(false);
     };
 
     const changeAplication = () => {
