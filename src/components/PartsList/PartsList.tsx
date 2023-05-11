@@ -130,15 +130,25 @@ const Parts = () => {
                                             style={{ display: 'flex' }}
                                             className="g-col-8 g-col-lg-8 g-col-md-7 g-col-sm-6 g-col-xs-2"
                                         >
-                                            <Image
-                                                alt=""
-                                                width="57"
-                                                height="40"
-                                                loader={() => item.imgUrl}
-                                                src={item.imgUrl}
-                                                unoptimized
-                                                className={styles.part__photo}
-                                            />
+                                            <div
+                                                className={
+                                                    styles[
+                                                        'part-photo__wrapper'
+                                                    ]
+                                                }
+                                            >
+                                                <Image
+                                                    alt=""
+                                                    width="51"
+                                                    height="34"
+                                                    loader={() => item.imgUrl}
+                                                    src={item.imgUrl}
+                                                    unoptimized
+                                                    className={
+                                                        styles.part__photo
+                                                    }
+                                                />
+                                            </div>
                                             <p className={styles.part__title}>
                                                 {item.translatedName}
                                             </p>

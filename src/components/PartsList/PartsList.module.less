@@ -1,5 +1,6 @@
 @import '@avtopro/style/themes/default.less';
 @import '@avtopro/style/mixins/nowrap.less';
+@import '@avtopro/style/mixins/bordering.less';
 
 .car__card {
     background: #ffffff;
@@ -79,8 +80,16 @@
     text-overflow: ellipsis;
 }
 
-.part__photo {
+.part-photo__wrapper {
+    .bordering();
+
     margin-right: 10px;
+    padding: 2px;
+}
+
+.part__photo {
+    width: 51px;
+    height: 34px;
     @media screen and (max-width: 768px) {
         display: none;
     }
