@@ -222,7 +222,7 @@ const Parts = () => {
                         <Link
                             href={`https://zealous-bay-07bf8c303.3.azurestaticapps.net/${router.locale}?modelId=${car.id}`}
                         >
-                            <Button theme="light-blue">{t('findPart')}</Button>
+                            <Button theme="prime">{t('findPart')}</Button>
                         </Link>
                         <Link target="_blank" href={car.catalogueUrl}>
                             <Button theme="light-blue">
